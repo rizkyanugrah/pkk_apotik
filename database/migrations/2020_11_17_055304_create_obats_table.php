@@ -21,6 +21,7 @@ class CreateObatsTable extends Migration
             $table->string('satuan');
             $table->bigInteger('harga');
             $table->date('expired');
+            $table->string('gambar');
             $table->timestamps();
 
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
