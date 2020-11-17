@@ -28,6 +28,10 @@
 
 <!-- Page Specific JS File -->
 <script src="{{ asset('js/page/index-0.js') }}"></script>
+
+<!-- Sweetalert JS -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
 </body>
 
 @stack('modal')
