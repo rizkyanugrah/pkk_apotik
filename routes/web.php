@@ -21,4 +21,5 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
     Route::resource('obat', 'Admin\ObatController');
+    Route::resource('transaksi', 'Admin\TransaksiObatController');
 });

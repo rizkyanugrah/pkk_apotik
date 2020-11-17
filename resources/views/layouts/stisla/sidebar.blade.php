@@ -49,7 +49,7 @@
                 </ul>
             </li> -->
             <li class="menu-header">Transaksi</li>
-            <li><a class="nav-link" href="blank.html"><i class="fas fa-money-check-alt"></i> <span>Data Transaksi</span></a></li>
+            <li class="{{ request()->is('admin/transaksi') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.transaksi.index') }}"><i class="fas fa-money-check-alt"></i> <span>Data Transaksi</span></a></li>
             <li class="menu-header">Laporan</li>
             <li><a class="nav-link" href="blank.html"><i class="fas fa-calendar-week"></i> <span>Data Laporan</span></a></li>
         </ul>
