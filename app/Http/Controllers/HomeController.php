@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Obat;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,6 +25,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('admin.dashboard.index');
+        $karyawan = User::all();
+        $obat_kadaluarsa = Obat::where('is_expired', 1)->get();
+        $obat_tidak_kadaluarsa = Obat::where('is_expired', 0)->get();
+
+        return view('admin.dashboard.index', compact('karyawan', 'obat_kadaluarsa', 'obat_tidak_kadaluarsa'));
     }
 }
