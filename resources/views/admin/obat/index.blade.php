@@ -25,7 +25,8 @@
                         <th>#</th>
                         <th>Nama Obat</th>
                         <th>Satuan</th>
-                        <th>Expired</th>
+                        <th>Kadaluarsa</th>
+                        <th>Tanggal Kadaluarsa</th>
                         <th>Supplier</th>
                         <th>Aksi</th>
                     </tr>
@@ -36,7 +37,10 @@
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $medicine->nama_obat }}</td>
                         <td>{{ $medicine->satuan }}</td>
-                        <td>{{ $medicine->expired }}</td>
+                        <td>
+                            <span class="badge badge-pill badge-{{ $medicine->is_expired === 1 ? 'danger' : 'success' }}" data-toggle="tooltip" data-placement="top" title="{{ is_expired($medicine) }}">{{ is_expired($medicine) }}</span>
+                        </td>
+                        <td class="{{ $medicine->tanggal_kadaluarsa <= date('Y-m-d') ? 'text-danger font-weight-bold' : '' }}">{{ indonesian_date($medicine->tanggal_kadaluarsa) }}</td>
                         <td>{{ $medicine->suppliers->nama_supplier }}</td>
                         <td>
                             <a href="{{ route('admin.obat.show', $medicine->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">

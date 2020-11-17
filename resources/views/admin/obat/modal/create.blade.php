@@ -11,16 +11,26 @@
                 <form action="{{ route('admin.obat.store') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-5">
                             <div class="form-group">
                                 <label for="nama_obat">Nama Obat</label>
                                 <input type="text" class="form-control" id="nama_obat" name="nama_obat">
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="aturan_minum">Aturan Minum</label>
                                 <input type="text" class="form-control" id="aturan_minum" name="aturan_minum">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="supplier">Kadaluarsa</label>
+                                <select class="form-control" id="is_expired" name="is_expired">
+                                    <option selected>Pilih..</option>
+                                    <option value="1">Ya</option>
+                                    <option value="0">Tidak</option>
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -40,8 +50,8 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="expired">Expired</label>
-                                <input type="date" class="form-control" id="expired" name="expired">
+                                <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
+                                <input type="date" class="form-control" id="tanggal_kadaluarsa" name="tanggal_kadaluarsa">
                             </div>
                         </div>
                     </div>

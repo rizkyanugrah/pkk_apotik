@@ -20,7 +20,8 @@ class CreateObatsTable extends Migration
             $table->string('aturan_minum');
             $table->string('satuan');
             $table->bigInteger('harga');
-            $table->date('expired');
+            $table->boolean('is_expired');
+            $table->date('tanggal_kadaluarsa');
             $table->string('gambar');
             $table->timestamps();
 

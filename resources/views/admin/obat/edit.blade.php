@@ -37,10 +37,21 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Expired</td>
+                        <td>Kadaluarsa</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="date" class="form-control" name="expired" id="languages_edit" value="{{ $medicine->expired }}">
+                            <select class="form-control" id="is_expired" name="is_expired">
+                                <option selected>Pilih..</option>
+                                <option value="1" {{ $medicine->is_expired === 1 ? 'selected' : '' }}>Ya</option>
+                                <option value="0" {{ $medicine->is_expired === 0 ? 'selected' : '' }}>Tidak</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Tanggal Kadaluarsa</td>
+                        <td>:</td>
+                        <td class="text-wrap">
+                            <input type="date" class="form-control" name="tanggal_kadaluarsa" id="languages_edit" value="{{ $medicine->tanggal_kadaluarsa }}">
                         </td>
                     </tr>
                     <tr>
