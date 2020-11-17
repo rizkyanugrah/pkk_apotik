@@ -24,7 +24,7 @@ $factory->define(App\User::class, function (Faker $faker) {
         'remember_token' => str_random(10),
         'jenis_kelamin' => $faker->title,
         'alamat' => $faker->address,
-        'gambar' => $faker->randomDigit,
+        'gambar' => 'assets/images/obat/default.png',
         'no_telp' => $faker->phoneNumber
     ];
 });

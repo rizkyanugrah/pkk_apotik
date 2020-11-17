@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@mail.com',
             'jenis_kelamin' => 'Laki-Laki',
             'alamat' => 'Jalan Jalan',
-            'gambar' => '01.jpg',
+            'gambar' => 'assets/images/obat/default.png',
             'no_telp' => '082123126531',
             'password' => bcrypt('secret')
         ]);
@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'apoteker@mail.com',
             'jenis_kelamin' => 'wanita',
             'alamat' => 'Jalan buntu',
-            'gambar' => '02.jpg',
+            'gambar' => 'assets/images/obat/default.png',
             'no_telp' => '0831265312312',
             'password' => bcrypt('secret')
         ]);

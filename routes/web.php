@@ -21,7 +21,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
     Route::resource('obat', 'Admin\ObatController');
-
     Route::resource('karyawan', 'Admin\KaryawanController');
+    Route::resource('supplier', 'Admin\SupplierController');
     Route::resource('transaksi', 'Admin\TransaksiObatController');
 });
