@@ -19,7 +19,7 @@ class ObatsTableSeeder extends Seeder
         $satuan = ['Gram', 'PCS'];
 
         for ($i = 1; $i <= 10; $i++) {
-            $tanggal_kadaluarsa = Carbon::createFromDate(2020, mt_rand(1, 12), mt_rand(1, 31));
+            $tanggal_kadaluarsa = Carbon::createFromDate(mt_rand(date('Y') - 2, date('Y') + 4), mt_rand(1, 12), mt_rand(1, 31));
 
             DB::table('obats')->insert([
                 'supplier_id' => mt_rand(1, 10),

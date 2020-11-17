@@ -38,7 +38,7 @@
                         <td>{{ $medicine->nama_obat }}</td>
                         <td>{{ $medicine->satuan }}</td>
                         <td>
-                            <span class="badge badge-pill badge-{{ $medicine->is_expired === 1 ? 'danger' : 'success' }}" data-toggle="tooltip" data-placement="top" title="{{ is_expired($medicine) }}">{{ is_expired($medicine) }}</span>
+                            <span class="badge badge-pill text-uppercase badge-{{ $medicine->is_expired === 1 ? 'danger' : 'success' }}" data-toggle="tooltip" data-placement="top" title="{{ is_expired($medicine) }}">{{ is_expired($medicine) }}</span>
                         </td>
                         <td class="{{ $medicine->tanggal_kadaluarsa <= date('Y-m-d') ? 'text-danger font-weight-bold' : '' }}">{{ indonesian_date($medicine->tanggal_kadaluarsa) }}</td>
                         <td>{{ $medicine->suppliers->nama_supplier }}</td>
