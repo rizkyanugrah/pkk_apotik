@@ -28,7 +28,8 @@ class HomeController extends Controller
         $karyawan = User::all();
         $obat_kadaluarsa = Obat::where('is_expired', 1)->get();
         $obat_tidak_kadaluarsa = Obat::where('is_expired', 0)->get();
+        $obat = Obat::all();
 
-        return view('admin.dashboard.index', compact('karyawan', 'obat_kadaluarsa', 'obat_tidak_kadaluarsa'));
+        return view('admin.dashboard.index', compact('karyawan', 'obat_kadaluarsa', 'obat_tidak_kadaluarsa', 'obat'));
     }
 }

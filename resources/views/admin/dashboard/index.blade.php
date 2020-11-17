@@ -55,15 +55,17 @@
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
-            <div class="card-icon bg-success">
-                <i class="fas fa-circle"></i>
-            </div>
+            <a href="{{ route('admin.obat.index') }}">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-th-large ml-0"></i>
+                </div>
+            </a>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Online Users</h4>
+                    <h4>Total Obat</h4>
                 </div>
                 <div class="card-body">
-                    47
+                    {{ count($obat) }}
                 </div>
             </div>
         </div>
