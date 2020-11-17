@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::prefix('admin')->group(function () {
-    Route::get('/dashboard', 'HomeController@index')->name('home');
+Route::name('admin.')->prefix('admin')->group(function () {
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+
+    Route::resource('obat', 'Admin\ObatController');
 });

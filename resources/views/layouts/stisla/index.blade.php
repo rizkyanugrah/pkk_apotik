@@ -10,9 +10,11 @@
             <!-- Main Content -->
             <div class="main-content">
                 <section class="section">
+                    @if(isset($header))
                     <div class="section-header">
-                        <h1>Dashboard - {{ auth()->user()->name }}</h1>
+                        <h1>{{ $header }}</h1>
                     </div>
+                    @endif
 
                     @yield('content')
                 </section>

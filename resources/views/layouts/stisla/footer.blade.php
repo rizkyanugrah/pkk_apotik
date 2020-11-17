@@ -21,8 +21,15 @@
 <script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
 <script src="{{ asset('stisla/assets/js/custom.js') }}"></script>
 
+<!-- Datatable JS -->
+<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="{{ asset('js/datatable.js') }}"></script>
+
 <!-- Page Specific JS File -->
 <script src="{{ asset('stisla/assets/js/page/index-0.js') }}"></script>
 </body>
+
+@stack('modal')
 
 </html>

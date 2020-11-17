@@ -1,4 +1,4 @@
-@extends('layouts.stisla.index')
+@extends('layouts.stisla.index', ['title' => 'Halaman Dashboard','header' => 'Dashboard - ' . auth()->user()->name])
 
 @section('content')
 <div class="row">

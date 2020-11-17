@@ -9,7 +9,7 @@
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
             <li class="nav-item dropdown active">
-                <a href="#" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
+                <a href="{{ route('admin.dashboard') }}" class="nav-link"><i class="fas fa-fire"></i><span>Dashboard</span></a>
             </li>
             <li class="menu-header">Master Data</li>
             <!-- <li class="nav-item dropdown">
@@ -20,7 +20,7 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li> -->
-            <li><a class="nav-link" href="blank.html"><i class="fas fa-th-large"></i> <span>Data Obat</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Obat</span></a></li>
             <li><a class="nav-link" href="blank.html"><i class="far fa-user"></i> <span>Data Karyawan</span></a></li>
             <li><a class="nav-link" href="blank.html"><i class="fas fa-box"></i> <span>Data Supplier</span></a></li>
             <!-- <li class="nav-item dropdown">
