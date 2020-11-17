@@ -63,7 +63,8 @@ class ObatController extends Controller
         $obats->aturan_minum = $request->get('aturan_minum');
         $obats->satuan = $request->get('satuan');
         $obats->harga = $request->get('harga');
-        $obats->expired = date('Y-m-d', strtotime($request->get('expired')));
+        $obats->is_expired = $request->get('is_expired');
+        $obats->tanggal_kadaluarsa = $request->get('tanggal_kadaluarsa');
         $obats->gambar = $this->helpers->imageUpload($image, $location);
         $obats->save();
 
@@ -124,7 +125,8 @@ class ObatController extends Controller
         $medicine->aturan_minum = $request->get('aturan_minum') ?? $medicine->aturan_minum;
         $medicine->satuan = $request->get('satuan') ?? $medicine->satuan;
         $medicine->harga = $request->get('harga') ?? $medicine->harga;
-        $medicine->expired = date('Y-m-d', strtotime($request->get('expired'))) ?? $medicine->expired;
+        $medicine->is_expired = $request->get('is_expired') ?? $medicine->is_expired;
+        $medicine->tanggal_kadaluarsa = $request->get('tanggal_kadaluarsa') ?? $medicine->tanggal_kadaluarsa;
         $medicine->save();
 
         return redirect()->route('admin.obat.index')->with('success', 'Data berhasil diubah!');
@@ -138,6 +140,8 @@ class ObatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Obat::find($id)->delete();
+
+        return redirect()->route('admin.obat.index')->with('success', 'Data berhasil dihapus!');
     }
 }

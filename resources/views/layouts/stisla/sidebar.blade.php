@@ -1,10 +1,10 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">Stisla</a>
+            <a href="index.html">{{ config('app.name') ?? 'Stisla' }}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
-            <a href="index.html">St</a>
+            <a href="index.html">{{ substr(config('app.name'), 0, 2) ?? substr('Stisla', 0, 2) }}</a>
         </div>
         <ul class="sidebar-menu">
             <li class="menu-header">Dashboard</li>
@@ -49,7 +49,7 @@
                 </ul>
             </li> -->
             <li class="menu-header">Transaksi</li>
-            <li><a class="nav-link" href="blank.html"><i class="fas fa-money-check-alt"></i> <span>Data Transaksi</span></a></li>
+            <li class="{{ request()->is('admin/transaksi') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.transaksi.index') }}"><i class="fas fa-money-check-alt"></i> <span>Data Transaksi</span></a></li>
             <li class="menu-header">Laporan</li>
             <li><a class="nav-link" href="blank.html"><i class="fas fa-calendar-week"></i> <span>Data Laporan</span></a></li>
         </ul>

@@ -26,9 +26,14 @@
                     <td class="text-wrap">{{ $medicine->harga }}</td>
                 </tr>
                 <tr>
-                    <td>Expired</td>
+                    <td>Kadaluarsa</td>
                     <td>:</td>
-                    <td class="text-wrap">{{ $medicine->harga }}</td>
+                    <td class="text-wrap{{ $medicine->tanggal_kadaluarsa <= date('Y-m-d') ? ' text-danger font-weight-bold' : '' }}">{{ is_expired($medicine) }}</td>
+                </tr>
+                <tr>
+                    <td>Tanggal Kadaluarsa</td>
+                    <td>:</td>
+                    <td class="text-wrap{{ $medicine->tanggal_kadaluarsa <= date('Y-m-d') ? ' text-danger font-weight-bold' : '' }}">{{ indonesian_date($medicine->tanggal_kadaluarsa) }}</td>
                 </tr>
                 <tr>
                     <td>Nama Supplier</td>

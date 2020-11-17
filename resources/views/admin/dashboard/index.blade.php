@@ -4,60 +4,68 @@
 <div class="row">
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
-            <div class="card-icon bg-primary">
-                <i class="far fa-user"></i>
-            </div>
+            <a href="#">
+                <div class="card-icon bg-primary">
+                    <i class="far fa-user ml-0"></i>
+                </div>
+            </a>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Total Admin</h4>
+                    <h4>Total Karyawan</h4>
                 </div>
                 <div class="card-body">
-                    10
+                    {{ count($karyawan) }}
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
-            <div class="card-icon bg-danger">
-                <i class="far fa-newspaper"></i>
-            </div>
+            <a href="{{ route('admin.obat.index') }}">
+                <div class="card-icon bg-danger">
+                    <i class="fas fa-th-large ml-0"></i>
+                </div>
+            </a>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>News</h4>
+                    <h4>Obat Kadaluarsa</h4>
                 </div>
                 <div class="card-body">
-                    42
+                    {{ count($obat_kadaluarsa) }}
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
-            <div class="card-icon bg-warning">
-                <i class="far fa-file"></i>
-            </div>
+            <a href="{{ route('admin.obat.index') }}">
+                <div class="card-icon bg-success">
+                    <i class="fas fa-th-large ml-0"></i>
+                </div>
+            </a>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Reports</h4>
+                    <h4>Obat Tidak Kadaluarsa</h4>
                 </div>
                 <div class="card-body">
-                    1,201
+                    {{ count($obat_tidak_kadaluarsa) }}
                 </div>
             </div>
         </div>
     </div>
     <div class="col-lg-3 col-md-6 col-sm-6 col-12">
         <div class="card card-statistic-1">
-            <div class="card-icon bg-success">
-                <i class="fas fa-circle"></i>
-            </div>
+            <a href="{{ route('admin.obat.index') }}">
+                <div class="card-icon bg-primary">
+                    <i class="fas fa-th-large ml-0"></i>
+                </div>
+            </a>
             <div class="card-wrap">
                 <div class="card-header">
-                    <h4>Online Users</h4>
+                    <h4>Total Obat</h4>
                 </div>
                 <div class="card-body">
-                    47
+                    {{ count($obat) }}
                 </div>
             </div>
         </div>
