@@ -14,16 +14,24 @@ class UsersTableSeeder extends Seeder
     public function run()
     {
         DB::table('users')->insert([
-            'name' => 'Admin',
+            'name' => 'Sumanto',
             'role_id' => 1,
             'email' => 'admin@mail.com',
+            'jenis_kelamin' => 'Laki-Laki',
+            'alamat' => 'Jalan Jalan',
+            'gambar' => '01.jpg',
+            'no_telp' => '082123126531',
             'password' => bcrypt('secret')
         ]);
 
         DB::table('users')->insert([
-            'name' => 'Apoteker',
+            'name' => 'salsa',
             'role_id' => 2,
             'email' => 'apoteker@mail.com',
+            'jenis_kelamin' => 'wanita',
+            'alamat' => 'Jalan buntu',
+            'gambar' => '02.jpg',
+            'no_telp' => '0831265312312',
             'password' => bcrypt('secret')
         ]);
 

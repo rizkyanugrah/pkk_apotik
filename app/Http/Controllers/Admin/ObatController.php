@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Obat;
 use App\Supplier;
+use File;
 use App\Http\Controllers\Helper\UploadController;
 
 class ObatController extends Controller
