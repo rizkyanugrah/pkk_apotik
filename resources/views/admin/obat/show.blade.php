@@ -39,11 +39,9 @@
         </div>
     </div>
 
-
-
     <div class="col-lg-5">
         <div class="card">
-            <img src="#" class="img-thumbnail" alt="#">
+            <img src="{{ asset($medicine->gambar) }}" class="img-thumbnail" alt="{{ $medicine->nama_obat }}">
         </div>
         <div class="py-4">
             <a href="{{ route('admin.obat.index') }}" class="btn btn-primary">Kembali</a>

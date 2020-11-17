@@ -42,7 +42,7 @@
                             <a href="{{ route('admin.obat.show', $medicine->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
                                 <i class="fas fa-fw fa-search"></i>
                             </a>
-                            <a href="#" class="btn btn-sm btn-warning text-white" title="Ubah data">
+                            <a href="{{ route('admin.obat.edit', $medicine->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
                             <a href="#" class="btn btn-sm btn-danger text-white" title="Hapus data">

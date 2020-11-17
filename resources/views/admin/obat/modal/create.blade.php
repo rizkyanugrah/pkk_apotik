@@ -8,7 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form action="{{ route('admin.obat.store') }}" method="POST">
+                <form action="{{ route('admin.obat.store') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="row">
                         <div class="col-lg-6">
@@ -56,6 +56,21 @@
                                     <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="custom-file">
+                                <input type="file" name="gambar" class="custom-file-input" id="image_create">
+                                <label class="custom-file-label" for="gambar" id="custom-file-label">Pilih file..</label>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="text-center">
+                                <img src="" class="img img-thumbnail shadow" alt="" id="image_preview" height="100" width="100">
                             </div>
                         </div>
                     </div>

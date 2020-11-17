@@ -5,42 +5,42 @@
     <div class="col-lg-7">
         <div class="card">
             <form action="{{ route('admin.obat.update', $medicine->id) }}" method="POST" enctype="multipart/form-data" id="form_book_update">
-                @method('PUT')
-                @csrf
+                {{ method_field('PUT') }}
+                {{ csrf_field() }}
                 <table class="table">
                     <tr>
                         <td style="width: 145px;">Nama Obat</td>
                         <td style="width: 10px;">:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="title" id="title_edit" value="{{ $medicine->nama_obat }}">
+                            <input type="text" class="form-control" name="nama_obat" id="title_edit" value="{{ $medicine->nama_obat }}">
                         </td>
                     </tr>
                     <tr>
                         <td>Aturan Minum</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="book_number" id="book_number_edit" value="{{ $medicine->aturan_minum }}">
+                            <input type="text" class="form-control" name="aturan_minum" id="book_number_edit" value="{{ $medicine->aturan_minum }}">
                         </td>
                     </tr>
                     <tr>
                         <td>Satuan</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="publisher" id="publisher_edit" value="{{ $medicine->satuan }}">
+                            <input type="text" class="form-control" name="satuan" id="publisher_edit" value="{{ $medicine->satuan }}">
                         </td>
                     </tr>
                     <tr>
                         <td>Harga</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="publisher" id="publisher_edit" value="{{ $medicine->harga }}">
+                            <input type="text" class="form-control" name="harga" id="publisher_edit" value="{{ $medicine->harga }}">
                         </td>
                     </tr>
                     <tr>
                         <td>Expired</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="date" class="form-control" name="languages" id="languages_edit" value="{{ $medicine->expired }}">
+                            <input type="date" class="form-control" name="expired" id="languages_edit" value="{{ $medicine->expired }}">
                         </td>
                     </tr>
                     <tr>
@@ -61,17 +61,17 @@
 
     <div class="col-lg-5">
         <div class="card">
-            <img src="#" class="img-thumbnail" alt="#" id="image_preview">
+            <img src="{{ asset($medicine->gambar) }}" class="img-thumbnail" alt="{{ $medicine->nama_obat }}" id="image_preview">
         </div>
 
         <div class="custom-file">
-            <input type="file" name="image" class="custom-file-input" id="image_edit">
-            <label class="custom-file-label" for="image" id="custom-file-label">Pilih file..</label>
+            <input type="file" name="gambar" class="custom-file-input" id="gambar_edit">
+            <label class="custom-file-label" for="gambar" id="custom-file-label">Pilih file..</label>
         </div>
 
         <div class="py-4">
             <a href="{{ route('admin.obat.index') }}" class="btn btn-primary">Kembali</a>
-            <button type="submit" class="btn btn-success" data-id="{{ $medicine->id }}" id="book_update_button">Simpan Perubahan</button>
+            <button type="submit" class="btn btn-success">Simpan Perubahan</button>
         </div>
 
         </form>
