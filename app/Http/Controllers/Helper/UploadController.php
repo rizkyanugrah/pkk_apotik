@@ -9,7 +9,7 @@ class UploadController extends Controller
 {
     public function imageUpload($image, $location)
     {
-        $random = rand(1000000000, 9999999999) . '_' . date('dmY') . '_' . $image->getClientOriginalName();
+        $random = mt_rand(1000000000, 9999999999) . '_' . date('dmY') . '_' . $image->getClientOriginalName();
         $destination = public_path($location);
         $image->move($destination, $random);
 
