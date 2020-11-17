@@ -61,7 +61,7 @@
                             <div class="form-group">
                                 <label for="supplier">Supplier</label>
                                 <select class="form-control select2-dropdown" id="supplier" name="supplier">
-                                    <option selected>Pilih Supplier</option>
+                                    <option selected>Pilih Supplier..</option>
                                     @foreach($suppliers as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
                                     @endforeach
