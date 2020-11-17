@@ -15,11 +15,11 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-<script src="{{ asset('stisla/assets/js/stisla.js') }}"></script>
+<script src="{{ asset('js/stisla.js') }}"></script>
 
 <!-- Template JS File -->
-<script src="{{ asset('stisla/assets/js/scripts.js') }}"></script>
-<script src="{{ asset('stisla/assets/js/custom.js') }}"></script>
+<script src="{{ asset('js/scripts.js') }}"></script>
+<script src="{{ asset('js/custom.js') }}"></script>
 
 <!-- Datatable JS -->
 <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
@@ -27,7 +27,7 @@
 <script src="{{ asset('js/datatable.js') }}"></script>
 
 <!-- Page Specific JS File -->
-<script src="{{ asset('stisla/assets/js/page/index-0.js') }}"></script>
+<script src="{{ asset('js/page/index-0.js') }}"></script>
 </body>
 
 @stack('modal')
