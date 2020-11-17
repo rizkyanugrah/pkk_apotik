@@ -58,7 +58,7 @@
                         <td>Supplier</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <select class="form-control" id="supplier" name="supplier">
+                            <select class="form-control select2-dropdown" id="supplier" name="supplier">
                                 <option selected>Pilih Supplier</option>
                                 @foreach($suppliers as $supplier)
                                 <option value="{{ $supplier->id }}" {{ $supplier->id === $medicine->supplier_id ? 'selected' : '' }}>{{ $supplier->nama_supplier }}</option>

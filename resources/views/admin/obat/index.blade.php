@@ -65,64 +65,62 @@
 
 @push('js')
 <script>
-    $(document).ready(function() {
-        $(".swal-delete").click(function(e) {
-            e.preventDefault();
-            let id = $(this).data('id');
+    $(".swal-delete").click(function(e) {
+        e.preventDefault();
+        let id = $(this).data('id');
 
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    $.ajaxSetup({
-                        headers: {
-                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                        }
-                    });
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
 
-                    $.ajax({
-                        type: "POST",
-                        url: "{{ url('admin/obat') }}/" + id,
-                        data: {
-                            _method: "DELETE"
-                        },
-                        success: function(data) {
-                            Swal.fire({
-                                title: "Berhasil",
-                                text: "Data berhasil dihapus.",
-                                icon: "success",
-                                timerProgressBar: true,
-                                onBeforeOpen: () => {
-                                    Swal.showLoading();
-                                    timerInterval = setInterval(() => {
-                                        const content = Swal.getContent();
-                                        if (content) {
-                                            const b = content.querySelector("b");
-                                            if (b) {
-                                                b.textContent = Swal.getTimerLeft();
-                                            }
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('admin/obat') }}/" + id,
+                    data: {
+                        _method: "DELETE"
+                    },
+                    success: function(data) {
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: "Data berhasil dihapus.",
+                            icon: "success",
+                            timerProgressBar: true,
+                            onBeforeOpen: () => {
+                                Swal.showLoading();
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getContent();
+                                    if (content) {
+                                        const b = content.querySelector("b");
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft();
                                         }
-                                    }, 100);
-                                },
-                                showConfirmButton: false
-                            });
-                            setTimeout(function() {
-                                location.reload();
-                            }, 500);
-                        },
-                        error: function(data) {
-                            console.log(data);
-                        }
-                    });
-                }
-            })
-        });
+                                    }
+                                }, 100);
+                            },
+                            showConfirmButton: false
+                        });
+                        setTimeout(function() {
+                            location.reload();
+                        }, 500);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+        })
     });
 </script>
 @endpush

@@ -1,4 +1,4 @@
-<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+<div class="modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false" aria-labelledby="staticBackdropLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
@@ -60,7 +60,7 @@
                         <div class="col-lg-12">
                             <div class="form-group">
                                 <label for="supplier">Supplier</label>
-                                <select class="form-control" id="supplier" name="supplier">
+                                <select class="form-control select2-dropdown" id="supplier" name="supplier">
                                     <option selected>Pilih Supplier</option>
                                     @foreach($suppliers as $supplier)
                                     <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
