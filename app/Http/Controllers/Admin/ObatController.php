@@ -137,6 +137,8 @@ class ObatController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Obat::find($id)->delete();
+
+        return redirect()->route('admin.obat.index')->with('success', 'Data berhasil dihapus!');
     }
 }
