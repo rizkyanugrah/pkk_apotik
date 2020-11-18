@@ -9,6 +9,7 @@
     <!-- General CSS Files -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{asset('css/login.css')}}">
 
     <!-- Template CSS -->
     <link rel="stylesheet" href="{{ asset('stisla/assets/css/style.css') }}">
@@ -16,76 +17,35 @@
 </head>
 
 <body>
-    <div id="app">
-        <section class="section">
-            <div class="container mt-5">
-                <div class="row">
-                    <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
-                        <div class="login-brand">
-                            <img src="{{ asset('stisla/assets/img/stisla-fill.svg') }}" alt="logo" width="100" class="shadow-light rounded-circle">
-                        </div>
-
-                        <div class="card card-primary">
-                            <div class="card-header">
-                                <h4>Login</h4>
-                            </div>
-
-                            <div class="card-body">
-                                <form method="POST" action="{{ route('login') }}" class="needs-validation" novalidate="">
-                                    {{ csrf_field() }}
-
-                                    @if($errors->has('email'))
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <strong>Gagal!</strong> Email atau password salah!
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                    </div>
-                                    @endif
-
-                                    <div class="form-group">
-                                        <label for="email">Email</label>
-                                        <input id="email" type="email" class="form-control" name="email" tabindex="1" required autofocus>
-                                        <div class="invalid-feedback">
-                                            Kolom email kosong!
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                                        <div class="d-block">
-                                            <label for="password" class="control-label">Password</label>
-                                            <div class="float-right">
-                                                <a href="auth-forgot-password.html" class="text-small">
-                                                    Forgot Password?
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <input id="password" type="password" class="form-control" name="password" tabindex="2" required>
-                                        <div class="invalid-feedback">
-                                            Kolom password salah!
-                                        </div>
-                                    </div>
-
-                                    <div class="form-group">
-                                        <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
-                                            Login
-                                        </button>
-                                    </div>
-                                </form>
-
-                            </div>
-                        </div>
-                        <div class="mt-5 text-muted text-center">
-                            Don't have an account? <a href="auth-register.html">Create One</a>
-                        </div>
-                        <div class="simple-footer">
-                            Copyright &copy; {{ config('app.name') }} {{ date('Y') }}
-                        </div>
-                    </div>
+    <div class="container">
+        <form class="login-group" method="POST" action="{{ route('login') }}">
+            {{ csrf_field() }}
+            
+            <h2 class="text-center text-dark text-uppercase">LOGIN</h2>
+            @if($errors->has('email'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Gagal!</strong> Email atau password salah!
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
+            @endif
+
+            <div class="form-group">
+                <label for="email" class="text-dark font-weight-bold">Email</label>
+                <input type="text" id="email" name="email" class="form-control rounded-pill" placeholder="Masukkan Email Anda" value="{{ old('username') }}"  autofocus required>
             </div>
-        </section>
+
+            <div class="form-group">
+                <label for="password" class="text-dark font-weight-bold" onkeyup="checkPass(); return false;">Password</label>
+                <input type="password" id="password" name="password" class="form-control rounded-pill" placeholder="Masukkan Password Anda" autocomplete="current-password" required onkeyup="checkPass(); return false;">
+                <div id="error-nwl"></div>
+            </div>
+            <button type="submit" class="btn btn-primary tombol">Login</button>
+
+        </form>
     </div>
+
 
     <!-- General JS Scripts -->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -94,6 +54,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
     <script src="{{ asset('stisla/assets/js/stisla.js') }}"></script>
+    <script src="{{asset('js/login.js')}}"></script>
 
     <!-- JS Libraies -->
 
