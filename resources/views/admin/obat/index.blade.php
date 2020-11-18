@@ -36,7 +36,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $medicine->nama_obat }}</td>
-                        <td>{{ $medicine->satuan }}</td>
+                        <td>{{ $medicine-> }}</td>
                         <td>
                             <span class="badge badge-pill text-uppercase badge-{{ $medicine->is_expired === 1 ? 'danger' : 'success' }}" data-toggle="tooltip" data-placement="top" title="{{ is_expired($medicine) }}">{{ is_expired($medicine) }}</span>
                         </td>

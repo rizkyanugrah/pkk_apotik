@@ -23,10 +23,14 @@ class ObatsTableSeeder extends Seeder
 
             DB::table('obats')->insert([
                 'supplier_id' => mt_rand(1, 10),
+                'satuan_id' => mt_rand(1, 3),
+                'jenis_id' => mt_rand(1, 3),
+                'kategori_id' => mt_rand(1, 3),
                 'nama_obat' => $faker->text(10),
+                'indikasi' => $faker->text(10),
                 'aturan_minum' => $aturan_minum[mt_rand(0, count($aturan_minum) - 1)],
-                'satuan' => $satuan[mt_rand(0, count($satuan) - 1)],
-                'harga' => mt_rand(100000, 200000),
+                'harga_beli' => mt_rand(100000, 200000),
+                'harga_jual' => mt_rand(300000, 350000),
                 'is_expired' => $tanggal_kadaluarsa <= date('Y-m-d') ? 1 : 0,
                 'tanggal_kadaluarsa' => $tanggal_kadaluarsa,
                 'gambar' => 'assets/images/obat/default.png',

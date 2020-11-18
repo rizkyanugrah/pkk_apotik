@@ -20,6 +20,9 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li> -->
+            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Satuan</span></a></li>
+            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Jenis</span></a></li>
+            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Kategori</span></a></li>
             <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Obat</span></a></li>
             <li class="{{ request()->is('admin/karyawan') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.karyawan.index') }}"><i class="far fa-user"></i> <span>Data Karyawan</span></a></li>
             <li class="{{ request()->is('admin/supplier') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.supplier.index') }}"><i class="fas fa-box"></i> <span>Data Supplier</span></a></li>
@@ -49,10 +52,8 @@
                 </ul>
             </li> -->
             <li class="menu-header">Transaksi</li>
-            <li class="{{ request()->is('admin/transaksi') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.transaksi.index') }}"><i class="fas fa-money-check-alt"></i> <span>Data Transaksi</span></a></li>
-
-            <li class="menu-header">Stok Opname</li>
-            <li class=""><a class="nav-link" href=""><i class="fas fa-pills"></i> <span>Data Stok Obat</span></a></li>
+            <li class="{{ request()->is('admin/transaksi') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.transaksi.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
+            <li class="{{ request()->is('admin/transaksi') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.transaksi.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Pembelian</span></a></li>
 
             <li class="menu-header">Laporan</li>
             <li><a class="nav-link" href="blank.html"><i class="fas fa-calendar-week"></i> <span>Data Laporan</span></a></li>
