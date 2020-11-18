@@ -142,7 +142,6 @@ class ObatController extends Controller
         $medicine->indikasi = $request->get('indikasi') ?? $medicine->indikasi;
         $medicine->nama_obat = $request->get('nama_obat') ?? $medicine->nama_obat;
         $medicine->aturan_minum = $request->get('aturan_minum') ?? $medicine->aturan_minum;
-        $medicine->satuan = $request->get('satuan') ?? $medicine->satuan;
         $medicine->harga_beli = $request->get('harga_beli') ?? $medicine->harga_beli;
         $medicine->harga_jual = $request->get('harga_jual') ?? $medicine->harga_jual;
         $medicine->is_expired = $request->get('is_expired') ?? $medicine->is_expired;
