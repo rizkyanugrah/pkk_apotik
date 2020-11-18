@@ -20,10 +20,10 @@
                     <li><a class="nav-link" href="layout-top-navigation.html">Top Navigation</a></li>
                 </ul>
             </li> -->
-            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Satuan</span></a></li>
-            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Jenis</span></a></li>
-            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Kategori</span></a></li>
-            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-th-large"></i> <span>Data Obat</span></a></li>
+            <li class="{{ request()->is('admin/satuan') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.satuan.index') }}"><i class="fas fa-cannabis"></i> <span>Data Satuan</span></a></li>
+            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-deviantart"></i> <span>Data Jenis</span></a></li>
+            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-notes-medical"></i> <span>Data Kategori</span></a></li>
+            <li class="{{ request()->is('admin/obat') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-capsules"></i> <span>Data Obat</span></a></li>
             <li class="{{ request()->is('admin/karyawan') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.karyawan.index') }}"><i class="far fa-user"></i> <span>Data Karyawan</span></a></li>
             <li class="{{ request()->is('admin/supplier') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.supplier.index') }}"><i class="fas fa-box"></i> <span>Data Supplier</span></a></li>
             <!-- <li class="nav-item dropdown">

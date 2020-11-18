@@ -82,7 +82,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('admin/obat') }}/" + id,
+                    url: "{{ url('admin/supplier') }}/" + id,
                     data: {
                         _method: "DELETE"
                     },

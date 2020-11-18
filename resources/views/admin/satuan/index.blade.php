@@ -1,4 +1,4 @@
-@extends('layouts.stisla.index', ['title' => 'Daftar Obat', 'header' => 'Obat'])
+@extends('layouts.stisla.index', ['title' => 'Daftar Satuan', 'header' => 'Satuan'])
 
 @section('content')
 <div class="row">
@@ -23,33 +23,20 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Nama Obat</th>
-                        <th>Satuan</th>
-                        <th>Kadaluarsa</th>
-                        <th>Tanggal Kadaluarsa</th>
-                        <th>Supplier</th>
+                        <th>Nama Satuan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach($medicines as $key => $medicine)
+                    @foreach($satuans as $key => $satuan)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $medicine->nama_obat }}</td>
-                        <td>{{ $medicine->satuans->nama_satuan }}</td>
+                        <td>{{ $satuan->nama_satuan }}</td>
                         <td>
-                            <span class="badge badge-pill text-uppercase badge-{{ $medicine->is_expired === 1 ? 'danger' : 'success' }}" data-toggle="tooltip" data-placement="top" title="{{ is_expired($medicine) }}">{{ is_expired($medicine) }}</span>
-                        </td>
-                        <td class="{{ $medicine->tanggal_kadaluarsa <= date('Y-m-d') ? 'text-danger font-weight-bold' : '' }}">{{ indonesian_date($medicine->tanggal_kadaluarsa) }}</td>
-                        <td>{{ $medicine->suppliers->nama_supplier }}</td>
-                        <td>
-                            <a href="{{ route('admin.obat.show', $medicine->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
-                                <i class="fas fa-fw fa-search"></i>
-                            </a>
-                            <a href="{{ route('admin.obat.edit', $medicine->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
+                            <a href="{{ route('admin.satuan.edit', $satuan->id) }}" class="btn btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
-                            <button type="submit" class="btn btn-sm btn-danger text-white swal-delete" data-id="{{ $medicine->id }}" title="Hapus data">
+                            <button type="submit" class="btn btn-danger text-white swal-delete" data-id="{{ $satuan->id }}" title="Hapus data">
                                 <i class="fas fa-fw fa-trash"></i>
                             </button>
                             <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -88,7 +75,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('admin/obat') }}/" + id,
+                    url: "{{ url('admin/satuan') }}/" + id,
                     data: {
                         _method: "DELETE"
                     },
@@ -127,5 +114,5 @@
 @endpush
 
 @push('modal')
-@include('admin.obat.modal.create')
+@include('admin.satuan.modal.create')
 @endpush
