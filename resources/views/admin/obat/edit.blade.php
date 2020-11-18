@@ -23,17 +23,53 @@
                         </td>
                     </tr>
                     <tr>
-                        <td>Satuan</td>
+                        <td>Kategori</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="satuan" id="publisher_edit" value="{{ $medicine->satuan }}">
+                            <select class="form-control select2-dropdown" id="kategori" name="kategori">
+                                <option selected>Pilih Kategori..</option>
+                                @foreach($kategoris as $kategori)
+                                <option value="{{ $kategori->id }}" {{ $kategori->id === $medicine->kategori_id ? 'selected' : '' }}>{{ $kategori->nama_kategori }}</option>
+                                @endforeach
+                            </select>
                         </td>
                     </tr>
                     <tr>
-                        <td>Harga</td>
+                        <td>Jenis</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="harga" id="publisher_edit" value="{{ $medicine->harga }}">
+                            <select class="form-control select2-dropdown" id="jenis" name="jenis">
+                                <option selected>Pilih Jenis..</option>
+                                @foreach($jeniss as $jenis)
+                                <option value="{{ $jenis->id }}" {{ $jenis->id === $medicine->jenis_id ? 'selected' : '' }}>{{ $jenis->nama_jenis }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Satuan</td>
+                        <td>:</td>
+                        <td class="text-wrap">
+                            <select class="form-control select2-dropdown" id="satuan" name="satuan">
+                                <option selected>Pilih Satuan..</option>
+                                @foreach($satuans as $satuan)
+                                <option value="{{ $satuan->id }}" {{ $satuan->id === $medicine->satuan_id ? 'selected' : '' }}>{{ $satuan->nama_satuan }}</option>
+                                @endforeach
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Harga Beli</td>
+                        <td>:</td>
+                        <td class="text-wrap">
+                            <input type="text" class="form-control" name="harga_beli" id="rupiah" value="{{ $medicine->harga_beli }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Harga Jual</td>
+                        <td>:</td>
+                        <td class="text-wrap">
+                            <input type="text" class="form-control" name="harga_jual" id="uang" value="{{ $medicine->harga_jual }}">
                         </td>
                     </tr>
                     <tr>
@@ -52,6 +88,20 @@
                         <td>:</td>
                         <td class="text-wrap">
                             <input type="date" class="form-control" name="tanggal_kadaluarsa" id="languages_edit" value="{{ $medicine->tanggal_kadaluarsa }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Stok</td>
+                        <td>:</td>
+                        <td class="text-wrap">
+                            <input type="number" class="form-control" name="stok" id="languages_edit" value="{{ $medicine->stok }}">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>Indikasi</td>
+                        <td>:</td>
+                        <td class="text-wrap">
+                            <input type="text" class="form-control" name="indikasi" id="languages_edit" value="{{ $medicine->indikasi }}">
                         </td>
                     </tr>
                     <tr>
@@ -90,3 +140,50 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+<script type="text/javascript">
+    var rupiah = document.getElementById('rupiah'); 
+    rupiah.addEventListener('keyup', function(e){
+        rupiah.value = formatRupiah(this.value, 'Rp. ');
+    });
+    
+    function formatRupiah(angka, prefix){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   		= number_string.split(','),
+        sisa     		= split[0].length % 3,
+        rupiah     		= split[0].substr(0, sisa),
+        ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+        if(ribuan){
+            separator = sisa ? '.' : '';
+            rupiah += separator + ribuan.join('.');
+        }
+
+        rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+        var nama =prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+        return nama; 
+    }
+    var uang = document.getElementById('uang'); 
+    uang.addEventListener('keyup', function(e){
+        uang.value = formatuang(this.value, 'Rp. ');
+    });
+
+    function formatuang(angka, prefix){
+        var number_string = angka.replace(/[^,\d]/g, '').toString(),
+        split   		= number_string.split(','),
+        sisa     		= split[0].length % 3,
+        uang     		= split[0].substr(0, sisa),
+        ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+        if(ribuan){
+            separator = sisa ? '.' : '';
+            uang += separator + ribuan.join('.');
+        }
+
+        uang = split[1] != undefined ? uang + ',' + split[1] : uang;
+        var namax =prefix == undefined ? uang : (uang ? 'Rp. ' + uang : '');
+        return namax; 
+    }
+</script>
+@endpush

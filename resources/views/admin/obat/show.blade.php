@@ -16,14 +16,29 @@
                     <td class="text-wrap">{{ $medicine->aturan_minum }}</td>
                 </tr>
                 <tr>
-                    <td>Satuan</td>
+                    <td>Kategori</td>
                     <td>:</td>
-                    <td class="text-wrap">{{ $medicine->satuan }}</td>
+                    <td class="text-wrap">{{ $medicine->Kategoris->nama_kategori }}</td>
                 </tr>
                 <tr>
-                    <td>Harga</td>
+                    <td>Jenis</td>
                     <td>:</td>
-                    <td class="text-wrap">{{ $medicine->harga }}</td>
+                    <td class="text-wrap">{{ $medicine->jenis->nama_jenis }}</td>
+                </tr>
+                <tr>
+                    <td>Satuan</td>
+                    <td>:</td>
+                    <td class="text-wrap">{{ $medicine->satuans->nama_satuan }}</td>
+                </tr>
+                <tr>
+                    <td>Harga Beli</td>
+                    <td>:</td>
+                    <td class="text-wrap">{{ $medicine->harga_beli }}</td>
+                </tr>
+                <tr>
+                    <td>Harga Jual</td>
+                    <td>:</td>
+                    <td class="text-wrap">{{ $medicine->harga_jual }}</td>
                 </tr>
                 <tr>
                     <td>Kadaluarsa</td>
@@ -34,6 +49,16 @@
                     <td>Tanggal Kadaluarsa</td>
                     <td>:</td>
                     <td class="text-wrap{{ $medicine->tanggal_kadaluarsa <= date('Y-m-d') ? ' text-danger font-weight-bold' : '' }}">{{ indonesian_date($medicine->tanggal_kadaluarsa) }}</td>
+                </tr>
+                <tr>
+                    <td>Stok</td>
+                    <td>:</td>
+                    <td class="text-wrap">{{ $medicine->stok }}</td>
+                </tr>
+                <tr>
+                    <td>Indikasi</td>
+                    <td>:</td>
+                    <td class="text-wrap">{{ $medicine->indikasi }}</td>
                 </tr>
                 <tr>
                     <td>Nama Supplier</td>

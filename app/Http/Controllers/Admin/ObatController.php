@@ -8,6 +8,9 @@ use App\Obat;
 use App\Supplier;
 use File;
 use App\Http\Controllers\Helper\UploadController;
+use App\Jenis;
+use App\Kategori;
+use App\Satuan;
 
 class ObatController extends Controller
 {
@@ -32,8 +35,11 @@ class ObatController extends Controller
     {
         $medicines = Obat::all();
         $suppliers = Supplier::orderBy('nama_supplier', 'asc')->get();
+        $kategoris = Kategori::orderBy('nama_kategori', 'asc')->get();
+        $jeniss     = Jenis::orderBy('nama_jenis', 'asc')->get();
+        $satuans   = Satuan::orderBy('nama_satuan', 'asc')->get();
 
-        return view('admin.obat.index', compact('medicines', 'suppliers'));
+        return view('admin.obat.index', compact('medicines', 'suppliers', 'kategoris', 'jeniss', 'satuans'));
     }
 
     /**
@@ -59,10 +65,15 @@ class ObatController extends Controller
 
         $obats = new Obat();
         $obats->supplier_id = $request->get('supplier');
+        $obats->satuan_id = $request->get('satuan');
+        $obats->jenis_id = $request->get('jenis');
+        $obats->kategori_id = $request->get('kategori');
+        $obats->indikasi = $request->get('indikasi');
+        $obats->harga_jual = $request->get('harga_jual');
+        $obats->harga_beli = $request->get('harga_beli');
+        $obats->stok = $request->get('jumlah');
         $obats->nama_obat = $request->get('nama_obat');
         $obats->aturan_minum = $request->get('aturan_minum');
-        $obats->satuan = $request->get('satuan');
-        $obats->harga = $request->get('harga');
         $obats->is_expired = $request->get('is_expired');
         $obats->tanggal_kadaluarsa = $request->get('tanggal_kadaluarsa');
         $obats->gambar = $this->helpers->imageUpload($image, $location);
@@ -94,7 +105,10 @@ class ObatController extends Controller
     {
         $medicine = Obat::find($id);
         $suppliers = Supplier::orderBy('nama_supplier', 'asc')->get();
-        return view('admin.obat.edit', compact('medicine', 'suppliers'));
+        $kategoris = Kategori::orderBy('nama_kategori', 'asc')->get();
+        $jeniss     = Jenis::orderBy('nama_jenis', 'asc')->get();
+        $satuans   = Satuan::orderBy('nama_satuan', 'asc')->get();
+        return view('admin.obat.edit', compact('medicine', 'suppliers', 'kategoris', 'jeniss', 'satuans'));
     }
 
     /**
@@ -121,10 +135,16 @@ class ObatController extends Controller
         }
 
         $medicine->supplier_id = $request->get('supplier') ?? $medicine->supplier;
+        $medicine->satuan_id = $request->get('satuan') ?? $medicine->satuan;
+        $medicine->kategori_id = $request->get('kategori') ?? $medicine->kategori;
+        $medicine->jenis_id = $request->get('jenis') ?? $medicine->jenis;
+        $medicine->stok = $request->get('stok') ?? $medicine->stok;
+        $medicine->indikasi = $request->get('indikasi') ?? $medicine->indikasi;
         $medicine->nama_obat = $request->get('nama_obat') ?? $medicine->nama_obat;
         $medicine->aturan_minum = $request->get('aturan_minum') ?? $medicine->aturan_minum;
         $medicine->satuan = $request->get('satuan') ?? $medicine->satuan;
-        $medicine->harga = $request->get('harga') ?? $medicine->harga;
+        $medicine->harga_beli = $request->get('harga_beli') ?? $medicine->harga_beli;
+        $medicine->harga_jual = $request->get('harga_jual') ?? $medicine->harga_jual;
         $medicine->is_expired = $request->get('is_expired') ?? $medicine->is_expired;
         $medicine->tanggal_kadaluarsa = $request->get('tanggal_kadaluarsa') ?? $medicine->tanggal_kadaluarsa;
         $medicine->save();

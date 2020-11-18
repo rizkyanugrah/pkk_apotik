@@ -23,6 +23,7 @@ class ObatsTableSeeder extends Seeder
 
             DB::table('obats')->insert([
                 'supplier_id' => mt_rand(1, 10),
+                'stok' => mt_rand(1, 200),
                 'satuan_id' => mt_rand(1, 3),
                 'jenis_id' => mt_rand(1, 3),
                 'kategori_id' => mt_rand(1, 3),

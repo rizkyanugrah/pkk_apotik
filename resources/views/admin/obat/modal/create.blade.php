@@ -11,21 +11,66 @@
                 <form action="{{ route('admin.obat.store') }}" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <div class="row">
-                        <div class="col-lg-5">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="nama_obat">Nama Obat</label>
                                 <input type="text" class="form-control" id="nama_obat" name="nama_obat">
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="aturan_minum">Aturan Minum</label>
-                                <input type="text" class="form-control" id="aturan_minum" name="aturan_minum">
+                                <input type="text" class="form-control" id="aturan_minum" name="aturan_minum" placeholder="Contoh : 3x1">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                    </div>
+            
+                    <div class="row">
+                        <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="supplier">Kadaluarsa</label>
+                                <label for="kategori">Kategori</label>
+                                <select class="form-control select2-dropdown" id="kategori" name="kategori">
+                                    <option selected>Pilih Kategori..</option>
+                                    @foreach($kategoris as $kategori)
+                                        <option value="{{ $kategori->id }}">{{ $kategori->nama_kategori }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="jenis">Jenis</label>
+                                <select class="form-control select2-dropdown" id="jenis" name="jenis">
+                                    <option selected>Pilih Jenis..</option>
+                                    @foreach($jeniss as $jenis)
+                                        <option value="{{ $jenis->id }}">{{ $jenis->nama_jenis }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="satuan">Satuan</label>
+                                <select class="form-control select2-dropdown" id="satuan" name="satuan">
+                                    <option selected>Pilih Satuan..</option>
+                                    @foreach($satuans as $satuan)
+                                        <option value="{{ $satuan->id }}">{{ $satuan->nama_satuan }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
+                                <input type="date" class="form-control" id="tanggal_kadaluarsa" name="tanggal_kadaluarsa">
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group">    
+                                <label for="kadaluarsa">Kadaluarsa</label>
                                 <select class="form-control" id="is_expired" name="is_expired">
                                     <option selected>Pilih..</option>
                                     <option value="1">Ya</option>
@@ -38,20 +83,20 @@
                     <div class="row">
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="satuan">Satuan</label>
-                                <input type="text" class="form-control" id="satuan" name="satuan">
+                                <label for="rupiah">Harga Beli</label>
+                                <input type="text" class="form-control" id="rupiah" name="harga_beli">
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="harga">Harga</label>
-                                <input type="number" class="form-control" id="harga" name="harga">
+                                <label for="uang">Harga Jual </label>
+                                <input type="text" class="form-control" id="uang" name="harga_jual">
                             </div>
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
-                                <label for="tanggal_kadaluarsa">Tanggal Kadaluarsa</label>
-                                <input type="date" class="form-control" id="tanggal_kadaluarsa" name="tanggal_kadaluarsa">
+                                <label for="jumlah">Jumlah</label>
+                                <input type="number" class="form-control" id="jumlah" name="jumlah">
                             </div>
                         </div>
                     </div>
@@ -66,6 +111,15 @@
                                     <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
                                     @endforeach
                                 </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="form-group">
+                                <label for="indikasi">Indikasi</label>
+                                <input type="text" class="form-control" id="indikasi" name="indikasi" placeholder="contoh: indikasi demam batu pilek">
                             </div>
                         </div>
                     </div>
@@ -93,3 +147,52 @@
         </div>
     </div>
 </div>
+
+@push('js')
+    
+    <script type="text/javascript">
+        var rupiah = document.getElementById('rupiah'); 
+        rupiah.addEventListener('keyup', function(e){
+            rupiah.value = formatRupiah(this.value, 'Rp. ');
+        });
+        
+        function formatRupiah(angka, prefix){
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split   		= number_string.split(','),
+            sisa     		= split[0].length % 3,
+            rupiah     		= split[0].substr(0, sisa),
+            ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+            if(ribuan){
+                separator = sisa ? '.' : '';
+                rupiah += separator + ribuan.join('.');
+            }
+
+            rupiah = split[1] != undefined ? rupiah + ',' + split[1] : rupiah;
+            var nama =prefix == undefined ? rupiah : (rupiah ? 'Rp. ' + rupiah : '');
+            return nama; 
+        }
+        var uang = document.getElementById('uang'); 
+        uang.addEventListener('keyup', function(e){
+            uang.value = formatuang(this.value, 'Rp. ');
+        });
+
+        function formatuang(angka, prefix){
+            var number_string = angka.replace(/[^,\d]/g, '').toString(),
+            split   		= number_string.split(','),
+            sisa     		= split[0].length % 3,
+            uang     		= split[0].substr(0, sisa),
+            ribuan     		= split[0].substr(sisa).match(/\d{3}/gi);
+
+            if(ribuan){
+                separator = sisa ? '.' : '';
+                uang += separator + ribuan.join('.');
+            }
+
+            uang = split[1] != undefined ? uang + ',' + split[1] : uang;
+            var namax =prefix == undefined ? uang : (uang ? 'Rp. ' + uang : '');
+            return namax; 
+        }
+    </script>
+
+@endpush

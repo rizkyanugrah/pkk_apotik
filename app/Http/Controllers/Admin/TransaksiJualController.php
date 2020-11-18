@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
-class TransaksiObatController extends Controller
+class TransaksiJualController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,7 +14,7 @@ class TransaksiObatController extends Controller
      */
     public function index()
     {
-        return view('admin.transaksi.index');
+        return view('admin.transaksi_jual.index');
     }
 
     /**

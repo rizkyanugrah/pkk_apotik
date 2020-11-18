@@ -1,4 +1,4 @@
-@extends('layouts.stisla.index', ['title' => 'Daftar Transaksi', 'header' => 'Daftar Transaksi'])
+@extends('layouts.stisla.index', ['title' => 'Transaksi Penjualan', 'header' => 'Transaksi Penjualan'])
 
 @section('content')
 <div class="row">
@@ -7,7 +7,7 @@
             <div class="row">
                 <div class="col-lg-12 px-3 py-3 text-right">
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
-                        Tambah Data
+                        + Transaksi Baru
                     </button>
                 </div>
             </div>
@@ -22,7 +22,7 @@
             <table class="table table-hovered text-center table-bordered" id="datatable">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Nama Konsumen</th>
                         <th>Pembelian Obat</th>
                         <th>Total Obat</th>
