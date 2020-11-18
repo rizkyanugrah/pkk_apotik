@@ -22,6 +22,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
 
     Route::resource('satuan', 'Admin\SatuanController');
     Route::resource('jenis', 'Admin\JenisController');
+    Route::resource('kategori', 'Admin\kategoriController');
     Route::resource('obat', 'Admin\ObatController');
     Route::resource('karyawan', 'Admin\KaryawanController');
     Route::resource('supplier', 'Admin\SupplierController');
