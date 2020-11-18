@@ -31,9 +31,11 @@
                     <td class="text-wrap">{{ $karyawan->no_telp }}</td>
                 </tr>
                 <tr>
+                    {{dd($karyawan->role)}}
+
                     <td>Role</td>
                     <td>:</td>
-                    <td class="text-wrap">{{ $karyawan->roles->name }}</td>
+                    <td class="text-wrap">{{ $karyawan->role->name }}</td>
                 </tr>
             </table>
         </div>

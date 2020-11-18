@@ -4,6 +4,7 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Role;
 
 class User extends Authenticatable
 {
@@ -27,8 +28,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function roles()
+    public function role()
     {
-        return $this->belongsTo(Role::class, 'id');
+        return $this->belongsTo(Role::class);
     }
 }

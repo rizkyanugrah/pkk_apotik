@@ -52,7 +52,7 @@
 
 @push('js')
 <script>
-    $(".swal-delete").click(function(e) {
+    $(document).on('click', '.swal-delete', function(e){
         e.preventDefault();
         let id = $(this).data('id');
 
