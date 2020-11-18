@@ -4,9 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Satuan;
+use App\Jenis;
 
-class SatuanController extends Controller
+class JenisController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class SatuanController extends Controller
      */
     public function index()
     {
-        $satuans = Satuan::all();
+        $jenis = Jenis::all();
 
-        return view('admin.satuan.index', compact('satuans'));
+        return view('admin.jenis.index', compact('jenis'));
     }
 
     /**
@@ -38,13 +38,12 @@ class SatuanController extends Controller
      */
     public function store(Request $request)
     {
-        $satuan = new Satuan();
-        $satuan->nama_satuan = $request->get('nama_satuan');
-        $satuan->save();
+        $jenis = new Jenis();
+        $jenis->nama_jenis = $request->get('nama_jenis');
+        $jenis->save();
 
-        return redirect()->route('admin.satuan.index')->with('success', 'Data berhasil ditambahkan!');
+        return redirect()->route('admin.jenis.index')->with('success', 'Data berhasil ditambahkan!');
     }
-
 
     /**
      * Display the specified resource.
@@ -65,8 +64,8 @@ class SatuanController extends Controller
      */
     public function edit($id)
     {
-        $satuan = Satuan::find($id);
-        return view('admin.satuan.edit', compact('satuan'));
+        $jenis = Jenis::find($id);
+        return view('admin.jenis.edit', compact('jenis'));
     }
 
     /**
@@ -78,11 +77,11 @@ class SatuanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $satuan = Satuan::find($id);
-        $satuan->nama_satuan = $request->get('nama_satuan') ?? $satuan->nama_satuan;
-        $satuan->save();
+        $jenis = Jenis::find($id);
+        $jenis->nama_jenis = $request->get('nama_jenis') ?? $jenis->nama_jenis;
+        $jenis->save();
 
-        return redirect()->route('admin.satuan.index')->with('success', 'Data berhasil diubah!');
+        return redirect()->route('admin.jenis.index')->with('success', 'Data berhasil diubah!');
     }
 
     /**
@@ -93,8 +92,8 @@ class SatuanController extends Controller
      */
     public function destroy($id)
     {
-        Satuan::find($id)->delete();
+        Jenis::find($id)->delete();
 
-        return redirect()->route('admin.satuan.index')->with('success', 'Data berhasil dihapus!');
+        return redirect()->route('admin.jenis.index')->with('success', 'Data berhasil dihapus!');
     }
 }
