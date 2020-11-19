@@ -14,7 +14,7 @@ class TransaksiJualController extends Controller
      */
     public function index()
     {
-        return view('admin.transaksi_jual.index');
+        return view('admin.obat_keluar.transaksi.index');
     }
 
     /**
