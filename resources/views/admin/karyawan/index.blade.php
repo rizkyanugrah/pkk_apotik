@@ -1,6 +1,6 @@
 @extends('layouts.stisla.index', ['title' => 'Daftar Karyawan', 'header' => 'Karyawan'])
 
-@section('content') 
+@section('content')
 <div class="row">
     <div class="col-lg-12 table-responsive">
         <div class="card px-3 py-3">
@@ -40,12 +40,16 @@
                             <a href="{{ route('admin.karyawan.show', $karyawan->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
                                 <i class="fas fa-fw fa-search"></i>
                             </a>
+                            @if(auth()->user()->role_id === 1)
                             <a href="{{ route('admin.obat.edit', $karyawan->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
+                            @if(auth()->user()->id !== $karyawan->id)
                             <a href="#" class="btn btn-sm btn-danger text-white" title="Hapus data">
                                 <i class="fas fa-fw fa-trash"></i>
                             </a>
+                            @endif
+                            @endif
                         </td>
                     </tr>
                     @endforeach

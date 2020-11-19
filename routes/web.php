@@ -12,21 +12,23 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Auth::routes();
 
-Route::name('admin.')->prefix('admin')->group(function () {
-    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::middleware('auth')->group(function () {
+    Route::name('admin.')->prefix('admin')->group(function () {
+        Route::get('/dashboard', 'HomeController@index')->name('dashboard');
 
-    Route::resource('satuan', 'Admin\SatuanController');
-    Route::resource('jenis', 'Admin\JenisController');
-    Route::resource('kategori', 'Admin\kategoriController');
-    Route::resource('obat', 'Admin\ObatController');
-    Route::resource('karyawan', 'Admin\KaryawanController');
-    Route::resource('supplier', 'Admin\SupplierController');
+        Route::resource('satuan', 'Admin\SatuanController');
+        Route::resource('jenis', 'Admin\JenisController');
+        Route::resource('kategori', 'Admin\kategoriController');
+        Route::resource('obat', 'Admin\ObatController');
+        Route::resource('karyawan', 'Admin\KaryawanController');
+        Route::resource('supplier', 'Admin\SupplierController');
 
-    Route::resource('obat_keluar', 'Admin\ObatKeluarController');
-    Route::resource('transaksi_jual', 'Admin\TransaksiJualController');
+        Route::resource('obat_keluar', 'Admin\ObatKeluarController');
+        Route::resource('transaksi_jual', 'Admin\TransaksiJualController');
+    });
 });
