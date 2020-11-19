@@ -46,9 +46,11 @@
                             <a href="#" class="btn btn-sm btn-info text-white" title="Lihat data">
                                 <i class="fas fa-fw fa-search"></i>
                             </a>
+                            @if(auth()->user()->role_id === 2)
                             <a href="#" class="btn btn-sm btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
+                            @endif
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                         </td>
                     </tr>
