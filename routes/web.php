@@ -26,5 +26,7 @@ Route::name('admin.')->prefix('admin')->group(function () {
     Route::resource('obat', 'Admin\ObatController');
     Route::resource('karyawan', 'Admin\KaryawanController');
     Route::resource('supplier', 'Admin\SupplierController');
+
+    Route::resource('obat_keluar', 'Admin\ObatKeluarController');
     Route::resource('transaksi_jual', 'Admin\TransaksiJualController');
 });

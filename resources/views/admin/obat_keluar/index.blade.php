@@ -6,9 +6,9 @@
         <div class="card px-3 py-3">
             <div class="row">
                 <div class="col-lg-12 px-3 py-3 text-right">
-                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
+                    <a href="{{ route('admin.transaksi_jual.index') }}" type="button" class="btn btn-primary">
                         + Transaksi Baru
-                    </button>
+                    </a>
                 </div>
             </div>
             @if(session()->get('success'))
@@ -49,9 +49,6 @@
                             <a href="#" class="btn btn-sm btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
-                            <button type="submit" class="btn btn-sm btn-danger text-white swal-delete" data-id="" title="Hapus data">
-                                <i class="fas fa-fw fa-trash"></i>
-                            </button>
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                         </td>
                     </tr>

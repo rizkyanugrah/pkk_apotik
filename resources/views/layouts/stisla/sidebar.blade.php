@@ -52,7 +52,7 @@
                 </ul>
             </li> -->
             <li class="menu-header">Transaksi</li>
-            <li class="{{ request()->is('admin/transaksi_jual') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.transaksi_jual.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
+            <li class="{{ request()->is('admin/obat_keluar') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.obat_keluar.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
             <li class="{{ request()->is('admin/transaksi') ? ' active' : '' }}"><a class="nav-link" href="{{ route('admin.transaksi_jual.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Pembelian</span></a></li>
 
             <li class="menu-header">Laporan</li>
