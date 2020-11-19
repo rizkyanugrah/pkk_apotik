@@ -92,7 +92,7 @@
                     type: "POST",
                     url: "{{ url('admin/obat') }}/" + id,
                     data: {
-                        _method: "DELETE"
+                        _method: "DELETE"   
                     },
                     success: function(data) {
                         Swal.fire({
@@ -123,7 +123,7 @@
                     }
                 });
             }
-        })
+        });
     });
 </script>
 @endpush

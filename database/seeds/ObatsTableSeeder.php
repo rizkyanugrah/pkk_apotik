@@ -34,7 +34,7 @@ class ObatsTableSeeder extends Seeder
                 'harga_jual' => mt_rand(300000, 350000),
                 'is_expired' => $tanggal_kadaluarsa <= date('Y-m-d') ? 1 : 0,
                 'tanggal_kadaluarsa' => $tanggal_kadaluarsa,
-                'gambar' => 'assets/images/obat/default.png',
+                'gambar' => 'asset/images/obat/get.jpg',
                 'created_at' => now(),
                 'updated_at' => now()
             ]);
