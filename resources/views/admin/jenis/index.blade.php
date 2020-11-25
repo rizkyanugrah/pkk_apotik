@@ -22,9 +22,11 @@
             <table class="table table-hovered text-center table-bordered" id="datatable">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Nama Jenis</th>
+                        @if(auth()->user()->role_id === 1)
                         <th>Aksi</th>
+                        @endif
                     </tr>
                 </thead>
                 <tbody>
@@ -32,6 +34,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td>{{ $jen->nama_jenis }}</td>
+                        @if(auth()->user()->role_id === 1)
                         <td>
                             <a href="{{ route('admin.jenis.edit', $jen->id) }}" class="btn btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
@@ -41,6 +44,7 @@
                             </button>
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                         </td>
+                        @endif
                     </tr>
                     @endforeach
                 </tbody>

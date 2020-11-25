@@ -22,7 +22,7 @@
             <table class="table table-hovered text-center table-bordered" id="datatable">
                 <thead>
                     <tr>
-                        <th>#</th>
+                        <th>No</th>
                         <th>Nama Obat</th>
                         <th>Satuan</th>
                         <th>Kadaluarsa</th>
@@ -48,12 +48,14 @@
                             <a href="{{ route('admin.obat.show', $medicine->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
                                 <i class="fas fa-fw fa-search"></i>
                             </a>
+                            @if(auth()->user()->role_id === 1)
                             <a href="{{ route('admin.obat.edit', $medicine->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
                             <button type="submit" class="btn btn-sm btn-danger text-white swal-delete" data-id="{{ $medicine->id }}" title="Hapus data">
                                 <i class="fas fa-fw fa-trash"></i>
-                            </button>
+                            </button>                                
+                            @endif
                             <meta name="csrf-token" content="{{ csrf_token() }}">
                         </td>
                     </tr>

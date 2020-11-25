@@ -40,6 +40,7 @@
                             <a href="{{ route('admin.supplier.show', $supplier->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
                                 <i class="fas fa-fw fa-search"></i>
                             </a>
+                            @if(auth()->user()->role_id === 1)
                             <a href="{{ route('admin.supplier.edit', $supplier->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
@@ -47,6 +48,7 @@
                                 <i class="fas fa-fw fa-trash"></i>
                             </button>
                             <meta name="csrf-token" content="{{ csrf_token() }}">
+                            @endif
                         </td>
                     </tr>
                     @endforeach

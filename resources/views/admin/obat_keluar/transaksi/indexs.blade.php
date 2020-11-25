@@ -46,7 +46,7 @@
 <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
-            <form id="form">
+            <form id="form" action="" method="">
                 <div class="modal-header">
                     <h5 class="modal-title" id="addModalLabel">Tambah Transaksi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -56,14 +56,6 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label for="name">Apotaker</label>
-                        <input name="apotaker" type="text" class="form-control" id="apotaker" readonly value="{{auth::user()->name}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">satuan</label>
-                        <input name="apotaker" type="text" class="form-control" id="apotaker" readonly value="{{auth::user()->name}}">
-                    </div>
-                    <div class="form-group">
-                        <label for="name">harga</label>
                         <input name="apotaker" type="text" class="form-control" id="apotaker" readonly value="{{auth::user()->name}}">
                     </div>
                     <div class="form-group">
