@@ -8,6 +8,6 @@ $factory->define(Supplier::class, function (Faker $faker) {
         'nama_supplier' => $faker->name,
         'alamat' => $faker->address,
         'nomor_handphone' => $faker->phoneNumber,
-        'gambar' => 'assets/images/obat/default.png'
+        'gambar' => 'img/products/product-5.jpg'
     ];
 });

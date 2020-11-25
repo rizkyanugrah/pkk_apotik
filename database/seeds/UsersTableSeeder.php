@@ -19,18 +19,18 @@ class UsersTableSeeder extends Seeder
             'email' => 'admin@mail.com',
             'jenis_kelamin' => 'Laki-Laki',
             'alamat' => 'Jalan Jalan',
-            'gambar' => 'assets/images/obat/get.jpg',
+            'gambar' => 'img/avatar/avatar-1.png',
             'no_telp' => '082123126531',
             'password' => bcrypt('secret')
         ]);
 
         DB::table('users')->insert([
-            'name' => 'salsa',
+            'name' => 'yolanda',
             'role_id' => 2,
             'email' => 'apoteker@mail.com',
             'jenis_kelamin' => 'wanita',
             'alamat' => 'Jalan buntu',
-            'gambar' => 'assets/images/obat/get.jpg',
+            'gambar' => 'img/avatar/avatar-5.png',
             'no_telp' => '0831265312312',
             'password' => bcrypt('secret')
         ]);
