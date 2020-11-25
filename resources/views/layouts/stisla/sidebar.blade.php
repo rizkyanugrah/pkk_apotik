@@ -1,7 +1,7 @@
 <div class="main-sidebar">
     <aside id="sidebar-wrapper">
         <div class="sidebar-brand">
-            <a href="index.html">{{ config('app.name') ?? 'Stisla' }}</a>
+            <a href="index.html">{{ config('app.name') ?? 'Laravel' }}</a>
         </div>
         <div class="sidebar-brand sidebar-brand-sm">
             <a href="index.html">{{ substr(config('app.name'), 0, 2) ?? substr('Stisla', 0, 2) }}</a>
@@ -59,10 +59,22 @@
             <li><a class="nav-link" href="blank.html"><i class="fas fa-calendar-week"></i> <span>Data Laporan</span></a></li>
         </ul>
 
-        <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
+        {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
             <a href="https://getstisla.com/docs" class="btn btn-primary btn-lg btn-block btn-icon-split">
                 <i class="fas fa-rocket"></i> Documentation
             </a>
-        </div>
+        </div> --}}
     </aside>
 </div>
+
+@push('js')
+<script>
+    new Typed('#typed', {
+        strings: ['Halo, Selamat Datang Di Aplikasi Apotek', 'Layani Pembeli dengan Ramah :)', 'Gatau Lagi Mau Isi Tulisan Apaan'],
+        typeSpeed: 50,
+        delaySpeed: 150,
+        loop: true
+    });
+</script>
+
+@endpush

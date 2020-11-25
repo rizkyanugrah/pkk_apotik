@@ -16,6 +16,8 @@
                     </div>
                     @endif
 
+                    
+
                     @yield('content')
                 </section>
             </div>

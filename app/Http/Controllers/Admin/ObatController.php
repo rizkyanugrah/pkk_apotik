@@ -162,4 +162,26 @@ class ObatController extends Controller
         Obat::find($id)->delete();
         return redirect()->route('admin.obat.index')->with('success', 'Data berhasil dihapus!');
     }
+
+    public function addToCart($id)
+    {
+        $obat = Obat::find($id);
+
+        if (!$obat) {
+            abort(404);
+        }
+        $cart = session()->get('cart');
+        if (!$cart) {
+            $cart = [
+                $id => [
+                    "apotaker" => $obat->apotaker,
+                    "name" => $obat->name,
+                    "quantity" => $obat->jumlah,
+                    'price' => $obat->harga_jual,
+                ]
+            ];
+            session()->put('cart', $cart);
+            return redirect()->route('admin.obat.index')->with('success', 'Product added to cart successfully!');
+        }
+    }
 }

@@ -17,9 +17,10 @@ class CreateTransaksiPenjualansTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('obat_id')->unsigned();
-            $table->string('nama_konsumen');
+            $table->string('nama_pembeli');
             $table->bigInteger('total_obat');
-            $table->longText('keterangan');
+            $table->string('harga_jual');
+            $table->string('sub_total');
             $table->date('tanggal_transaksi');
             $table->timestamps();
 

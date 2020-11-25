@@ -6,9 +6,9 @@
         <div class="card px-3 py-3">
             <div class="row">
                 <div class="col-lg-12 px-3 py-3">
-                    <a href="{{ route('admin.transaksi_jual.index') }}" type="button" class="btn btn-primary">
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#staticBackdrop">
                         + Tambah
-                    </a>
+                    </button>
                 </div>
             </div>
             @if(session()->get('success'))
@@ -35,32 +35,35 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Nama Konsumen</th>
+                        <th>Nama Pembeli</th>
                         <th>Nama Obat</th>
                         <th>Jumlah Obat</th>
-                        <th>Harga</th>
+                        <th>Harga Beli</th>
                         <th>SubTotal</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-
-                    <tr>
-                        <td>asdasdasdasdsd</td>
-                        <td>asdasdasdasdsd</td>
-                        <td>asdasdasdasdsd</td>
-                        <td>
-                            asdasasd
-                        </td>
-                        <td>asdasasdsad</td>
-                        <td>asdasasd</td>
-                        <td>
-                            <button type="submit" class="btn btn-danger text-white swal-delete" data-id="" title="Hapus data">
-                                <i class="fas fa-fw fa-trash"></i>
-                            </button>
-                            <meta name="csrf-token" content="{{ csrf_token() }}">
-                        </td>
-                    </tr>
+                    @isset($cartCollection)
+                        @foreach($cartCollection as $item)
+                            <tr>
+                                <td>{{ $item->name }}</td>
+                                <td>asdasdasdasdsd</td>
+                                <td>asdasdasdasdsd</td>
+                                <td>
+                                    asdasasd
+                                </td>
+                                <td></td>
+                                <td>asdasasd</td>
+                                <td>
+                                    <button type="submit" class="btn btn-danger text-white swal-delete" data-id="" title="Hapus data">
+                                        <i class="fas fa-fw fa-trash"></i>
+                                    </button>
+                                    <meta name="csrf-token" content="{{ csrf_token() }}">
+                                </td>
+                            </tr>                        
+                        @endforeach
+                    @endisset
                 </tbody>
             </table>
             <hr>
@@ -77,6 +80,7 @@
     </div>
 </div>
 @endsection
+
 
 @push('js')
 <script>
@@ -139,4 +143,8 @@
         })
     });
 </script>
+@endpush
+
+@push('modal')
+@include('admin.obat_keluar.transaksi.modal.create')
 @endpush

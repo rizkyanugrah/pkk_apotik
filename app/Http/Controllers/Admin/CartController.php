@@ -4,20 +4,29 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Obat;
-use Illuminate\Support\Facades\DB;
 
-class TransaksiJualController extends Controller
+class CartController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $obats = Obat::all();
-        return view('admin.obat_keluar.transaksi.indexs', compact('obats'));
+        // $cartCollection = \Cart::getContent();
+        // dd($cartCollection);
+        $cartCollection = \Cart::add(array(
+            // 'id' => $request->id,
+            'name' => $request->apotaker,
+            // 'price' => $request->price,
+            // 'quantity' => $request->quantity,
+            // 'attributes' => array(
+            //     'image' => $request->img,
+            //     'slug' => $request->slug
+        ));
+
+        return view('admin.obat_keluar.transaksi.index', compact('cartCollection'));
     }
 
     /**
