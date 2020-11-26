@@ -21,7 +21,7 @@
                 </div>
                 <div class="form-group">
                     <label for="tanggal_transaksi">Tanggal Transaksi</label>
-                    <input type="text" class="form-control" id="tanggal_transaksi" name="tanggal_transaksi" value="{{$transaction->tanggal_pembelian}}">
+                    <input type="date" class="form-control" id="tanggal_transaksi" name="tanggal_transaksi" value="{{$transaction->tanggal_pembelian}}">
                 </div>
                 <div class="row">
                     <div class="col-lg-12 px-3 py-3 justify-content-end">
