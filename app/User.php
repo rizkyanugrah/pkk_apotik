@@ -4,17 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use App\Role;
-use Illuminate\Auth\Authenticatable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 
-class User extends Model
+class User extends Authenticatable
 {
-    use Authenticatable;
-    use Authorizable;
-    use CanResetPassword;
-
     use Notifiable;
     protected $table = 'users';
     /**
