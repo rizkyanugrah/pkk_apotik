@@ -45,9 +45,10 @@
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
                             @if(auth()->user()->id !== $karyawan->id)
-                            <a href="#" class="btn btn-sm btn-danger text-white" title="Hapus data">
+                            <button type="submit" class="btn btn-sm btn-danger text-white swal-delete" data-id="{{ $karyawan->id }}" title="Hapus data">
                                 <i class="fas fa-fw fa-trash"></i>
-                            </a>
+                            </button>                                
+                            <meta name="csrf-token" content="{{ csrf_token() }}">
                             @endif
                             @endif
                         </td>
@@ -59,6 +60,69 @@
     </div>
 </div>
 @endsection
+
+@push('js')
+<script>
+    $(document).on('click', '.swal-delete', function(e){
+        e.preventDefault();
+        let id = $(this).data('id');
+
+        Swal.fire({
+            title: 'Hapus?',
+            text: "Data tidak akan bisa dikembalikan!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Ya',
+            cancelButtonText: 'Tidak'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+
+                $.ajax({
+                    type: "POST",
+                    url: "{{ url('admin/karyawan') }}/" + id,
+                    data: {
+                        _method: "DELETE"   
+                    },
+                    success: function(data) {
+                        Swal.fire({
+                            title: "Berhasil",
+                            text: "Data berhasil dihapus.",
+                            icon: "success",
+                            timerProgressBar: true,
+                            onBeforeOpen: () => {
+                                Swal.showLoading();
+                                timerInterval = setInterval(() => {
+                                    const content = Swal.getContent();
+                                    if (content) {
+                                        const b = content.querySelector("b");
+                                        if (b) {
+                                            b.textContent = Swal.getTimerLeft();
+                                        }
+                                    }
+                                }, 100);
+                            },
+                            showConfirmButton: false
+                        });
+                        setTimeout(function() {
+                            location.reload();
+                        }, 500);
+                    },
+                    error: function(data) {
+                        console.log(data);
+                    }
+                });
+            }
+        });
+    });
+</script>
+@endpush
 
 @push('modal')
 @include('admin.karyawan.modal.create')
