@@ -56,7 +56,7 @@
             <li class="{{Request::segment(2) == 'obat_keluar' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.obat_keluar.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
 
             <li class="menu-header">Laporan</li>
-            <li><a class="nav-link" href="blank.html"><i class="fas fa-calendar-week"></i> <span>Data Laporan</span></a></li>
+            <li><a class="nav-link" href="{{ route('admin.laporan.index') }}"><i class="fas fa-calendar-week"></i> <span>Data Laporan</span></a></li>
         </ul>
 
         {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
