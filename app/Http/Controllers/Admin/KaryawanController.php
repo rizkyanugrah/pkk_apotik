@@ -77,7 +77,7 @@ class KaryawanController extends Controller
     {
 
         $karyawan = User::find($id);
-        dd(User::find($id)->something, Role::find(1)->users[0]);
+        $karyawan->role = Role::find($karyawan->role_id);
         return view('admin.karyawan.show', compact('karyawan'));
     }
 

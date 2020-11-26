@@ -3,11 +3,18 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
+use Illuminate\Auth\Authenticatable;
+use Illuminate\Auth\Passwords\CanResetPassword;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Foundation\Auth\Access\Authorizable;
 
-class User extends Authenticatable
+class User extends Model
 {
+    use Authenticatable;
+    use Authorizable;
+    use CanResetPassword;
+
     use Notifiable;
     protected $table = 'users';
     /**
@@ -27,8 +34,8 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
-    public function something()
+    public function role()
     {
-        return $this->belongsTo(Role::class);
+      return $this->hasOne(Role::class);
     }
 }

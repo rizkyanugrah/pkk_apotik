@@ -19,7 +19,7 @@ class CreateTransaksiPembelianDetailsTable extends Migration
             $table->integer('obat_id')->unsigned();
             $table->bigInteger('total_obat');
             $table->string('sub_total');
-            $table->timestamps();
+            // $table->timestamps();
             $table->foreign('transaksi_pembelian_id')->references('id')->on('transaksi_pembelians')->onDelete('cascade');
             $table->foreign('obat_id')->references('id')->on('obats')->onDelete('cascade');
             $table->timestamps();
