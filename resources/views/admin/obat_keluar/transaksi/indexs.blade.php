@@ -56,7 +56,7 @@
         </div>
         @endsection
 
-        <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addModal" aria-labelledby="addModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form id="form" action="" method="">
@@ -73,7 +73,7 @@
 
                             <div class="form-group">
                                 <label for="obat">Obat</label>
-                                <select name="obat" class="form-control" id="obat">
+                                <select name="obat" class=" select2-dropdown" id="obat">
                                     <option selected>Pilih Obat...</option>
                                     @foreach($obats as $obat)
                                     <option value="{{ $obat->id }}" data-name="{{$obat->nama_obat}}" data-price="{{$obat->harga_jual}}" data-unit="{{$obat->satuans->nama_satuan}}">{{ $obat->nama_obat }}</option>
@@ -149,12 +149,12 @@
                 $("#form").on('submit', function(e) {
                     e.preventDefault()
                     const data = JSON.parse(sessionStorage.getItem(sessionItemName) || "[]")
-                    const member = $(this).serializeArray().reduce(
+                    const obat = $(this).serializeArray().reduce(
                         (obj, item) => Object.assign(obj, {
                             [item.name]: item.value
                         }), {});
                     // Jika ada item dengan nama yang sama, maka hapus kemudian buat baru, jika tidak maka tambahkan
-                    const storedData = !!data.find(item => item.name === member.name) ? [...data.filter((item) => item.name !== member.name), member] : [...data, member];
+                    const storedData = !!data.find(item => item.obat === obat.obat) ? [...data.filter((item) => item.obat !== obat.obat), obat] : [...data, obat];
                     sessionStorage.setItem(sessionItemName, JSON.stringify(storedData));
                     setTableItem();
                     $("#form")[0].reset();
@@ -182,7 +182,8 @@
                         type: 'POST',
                         data: data,
                         success: function(data) {
-                            console.log(data)
+                            sessionStorage.removeItem(sessionItemName);
+                            window.location.href = '/admin/obat_keluar';
                         }
                     })
                 })

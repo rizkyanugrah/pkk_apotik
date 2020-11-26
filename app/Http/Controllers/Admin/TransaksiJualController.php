@@ -5,7 +5,12 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Obat;
+use App\transaksi_penjualan;
+use App\TransaksiPenjualan;
+use Exception;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class TransaksiJualController extends Controller
 {
@@ -37,18 +42,23 @@ class TransaksiJualController extends Controller
      */
     public function store(Request $request)
     {
-        /**
-         * name = Nama Pembeli
-         * tanggal_transaksi = Tanggal Transaksi
-         * obat = [[
-         *  "obat" = id obat
-         *  "jumlah" = jumlah obat
-         * ]]
-         */
-        return [
-            "status" => 200,
-            "data" => $request->obat
-        ];
+        try {
+            foreach ($request->obat as $obat) {
+                $obat_data = Obat::find($obat['obat']);
+                $transaksi_penjualan = new TransaksiPenjualan();
+                $transaksi_penjualan->user_id = Auth::user()->id;
+                $transaksi_penjualan->obat_id = $obat['obat'];
+                $transaksi_penjualan->nama_pembeli = $request->name;
+                $transaksi_penjualan->total_obat = $obat['jumlah'];
+                $transaksi_penjualan->sub_total = $obat_data->harga_jual * intval($obat['jumlah']);
+                $transaksi_penjualan->tanggal_transaksi = Carbon::parse($request->tanggal_transaksi)->toDateTimeString();
+                $transaksi_penjualan->save();
+            }
+
+            return response()->json(['status' => 200, 'message' => 'Transaksi Berhasil'], 200);
+        } catch (Exception $e) {
+            return response()->json(['errors' => [$e->getMessage()]], 400);
+        }
     }
 
     /**
