@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\supplier;
+use App\Supplier;
 use File;
 use App\Http\Controllers\Helper\UploadController;
 
