@@ -3,17 +3,18 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 use App\Role;
-use Illuminate\Auth\Authenticatable;
-use Illuminate\Auth\Passwords\CanResetPassword;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Foundation\Auth\Access\Authorizable;
+// use Illuminate\Auth\Authenticatable;
+// use Illuminate\Auth\Passwords\CanResetPassword;
+// use Illuminate\Database\Eloquent\Model;
+// use Illuminate\Foundation\Auth\Access\Authorizable;
 
-class User extends Model
+class User extends Authenticatable
 {
-    use Authenticatable;
-    use Authorizable;
-    use CanResetPassword;
+    // use Authenticatable;
+    // use Authorizable;
+    // use CanResetPassword;
 
     use Notifiable;
     protected $table = 'users';
@@ -36,6 +37,6 @@ class User extends Model
     ];
     public function role()
     {
-      return $this->hasOne(Role::class);
+        return $this->hasOne(Role::class);
     }
 }
