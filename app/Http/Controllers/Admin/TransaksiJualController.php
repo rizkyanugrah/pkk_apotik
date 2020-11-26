@@ -27,7 +27,6 @@ class TransaksiJualController extends Controller
      */
     public function create()
     {
-        //
     }
 
     /**
@@ -38,7 +37,18 @@ class TransaksiJualController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * name = Nama Pembeli
+         * tanggal_transaksi = Tanggal Transaksi
+         * obat = [[
+         *  "obat" = id obat
+         *  "jumlah" = jumlah obat
+         * ]]
+         */
+        return [
+            "status" => 200,
+            "data" => $request->obat
+        ];
     }
 
     /**
