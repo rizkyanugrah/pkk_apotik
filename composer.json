@@ -8,9 +8,10 @@
     "license": "MIT",
     "type": "project",
     "require": {
-        "php": "7.4.0",
+        "php": "^7.3",
         "darryldecode/cart": "^4.2",
         "fideloper/proxy": "~3.3",
+        "phpoffice/phpspreadsheet": "^1.15",
         "laravel/framework": "5.5.*",
         "laravel/tinker": "~1.0"
     },
