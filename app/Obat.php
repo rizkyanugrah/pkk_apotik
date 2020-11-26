@@ -7,7 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Obat extends Model
 {
     protected $guarded = [];
-
+    protected $fillable = [
+        'supplier_id',
+        'satuan_id',
+        'jenis_id',
+        'kategori_id',
+        'nama_obat',
+        'aturan_minum',
+        'indikasi',
+        'harga_beli',
+        'harga_jual',
+        'is_expired',
+        'tanggal_kadaluarsa',
+        'gambar',
+        'is_expired',
+        'stok'
+    ];
     public function suppliers()
     {
         return $this->belongsTo(Supplier::class, 'id');

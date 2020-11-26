@@ -17,11 +17,10 @@ class CreateTransaksiPembeliansTable extends Migration
             $table->increments('id');
             $table->integer('user_id')->unsigned();
             $table->integer('supplier_id')->unsigned();
-            $table->string('tanggal_pembelian');
+            $table->date('tanggal_pembelian');
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('supplier_id')->references('id')->on('suppliers')->onDelete('cascade');
-            $table->timestamps();
         });
     }
 

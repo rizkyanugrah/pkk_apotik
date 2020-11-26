@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('obat_keluar', 'Admin\ObatKeluarController');
         Route::resource('transaksi_jual', 'Admin\TransaksiJualController');
+        Route::resource('pembelian', 'Admin\TransaksiPembelianController');
         Route::resource('cart', 'Admin\CartController');
     });
 });
