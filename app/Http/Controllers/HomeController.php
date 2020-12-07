@@ -29,7 +29,7 @@ class HomeController extends Controller
         $obat_kadaluarsa = Obat::where('is_expired', 1)->get();
         $obat_tidak_kadaluarsa = Obat::where('is_expired', 0)->get();
         $obat = Obat::all();
-
-        return view('admin.dashboard.index', compact('karyawan', 'obat_kadaluarsa', 'obat_tidak_kadaluarsa', 'obat'));
+        $stok = Obat::where('stok', '<', 20)->get();
+        return view('admin.dashboard.index', compact('karyawan', 'obat_kadaluarsa', 'obat_tidak_kadaluarsa', 'obat', 'stok'));
     }
 }

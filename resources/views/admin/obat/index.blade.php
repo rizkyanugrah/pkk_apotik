@@ -43,7 +43,7 @@
                         </td>
                         <td class="{{ $medicine->tanggal_kadaluarsa <= date('Y-m-d') ? 'text-danger font-weight-bold' : '' }}">{{ indonesian_date($medicine->tanggal_kadaluarsa) }}</td>
                         <td>{{ $medicine->suppliers->nama_supplier }}</td>
-                        <td>{{ $medicine->stok }}</td>
+                        <td class="{{$medicine->stok  <= 20 ? 'text-danger font-weight-bold' : ''}}"> {{ $medicine->stok }}</td>
                         <td>
                             <a href="{{ route('admin.obat.show', $medicine->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
                                 <i class="fas fa-fw fa-search"></i>
