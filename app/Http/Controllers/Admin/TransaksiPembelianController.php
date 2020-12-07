@@ -51,13 +51,13 @@ class TransaksiPembelianController extends Controller
             $transaction->save();
             foreach ($request->details as $detail) {
                 $drug = Obat::find($detail['id']);
-                // if ($drug->stok < $detail['total']) {
-                //     return response()->json([
-                //         "status" => 400,
-                //         "errors" => "Stok Obat $drug->nama_obat Tidak Mencukupi!"
-                //     ], 400);
-                //     $transaction->delete();
-                // }
+                if ($drug->stok < $detail['total']) {
+                    return response()->json([
+                        "status" => 400,
+                        "errors" => "Stok Obat $drug->nama_obat Tidak Mencukupi!"
+                    ], 400);
+                    $transaction->delete();
+                }
                 $transaction_detail = new TransaksiPembelianDetail();
                 $transaction_detail->obat_id = $detail['id'];
                 $transaction_detail->total_obat = intval($detail['total']);

@@ -23,8 +23,8 @@ class CreateObatsTable extends Migration
             $table->string('nama_obat');
             $table->string('aturan_minum');
             $table->string('indikasi');
-            $table->string('harga_beli');
-            $table->string('harga_jual');
+            $table->bigInteger('harga_beli');
+            $table->bigInteger('harga_jual');
             $table->boolean('is_expired');
             $table->date('tanggal_kadaluarsa');
             $table->string('gambar');

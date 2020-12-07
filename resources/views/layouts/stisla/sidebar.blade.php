@@ -24,8 +24,10 @@
             <li class="{{Request::segment(2) == 'jenis' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.jenis.index') }}"><i class="fas fa-book-medical"></i> <span>Data Jenis</span></a></li>
             <li class="{{Request::segment(2) == 'kategori' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.kategori.index') }}"><i class="fas fa-notes-medical"></i> <span>Data Kategori</span></a></li>
             <li class="{{Request::segment(2) == 'obat' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.obat.index') }}"><i class="fas fa-capsules"></i> <span>Data Obat</span></a></li>
+            @if(auth()->user()->role_id === 1)
             <li class="{{Request::segment(2) == 'karyawan' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.karyawan.index') }}"><i class="far fa-user"></i> <span>Data Karyawan</span></a></li>
             <li class="{{Request::segment(2) == 'supplier' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.supplier.index') }}"><i class="fas fa-box"></i> <span>Data Supplier</span></a></li>
+            @endif
             <!-- <li class="nav-item dropdown">
                 <a href="#" class="nav-link has-dropdown"><i class="fas fa-th"></i> <span>Bootstrap</span></a>
                 <ul class="dropdown-menu">
@@ -52,11 +54,16 @@
                 </ul>
             </li> -->
             <li class="menu-header">Transaksi</li>
+            @if(auth()->user()->role_id === 1)
             <li class="{{Request::segment(2) == 'pembelian' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.pembelian.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Pembelian</span></a></li>
-            <li class="{{Request::segment(2) == 'obat_keluar' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.obat_keluar.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
-
+            @endif
+            @if(auth()->user()->role_id === 2)
+                <li class="{{Request::segment(2) == 'obat_keluar' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.obat_keluar.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
+            @endif
+            @if(auth()->user()->role_id === 1)
             <li class="menu-header">Laporan</li>
             <li><a class="nav-link" href="{{ route('admin.laporan.index') }}"><i class="fas fa-calendar-week"></i> <span>Data Laporan</span></a></li>
+            @endif
         </ul>
 
         {{-- <div class="mt-4 mb-4 p-3 hide-sidebar-mini">
