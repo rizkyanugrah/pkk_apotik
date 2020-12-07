@@ -41,7 +41,7 @@
                                 <i class="fas fa-fw fa-search"></i>
                             </a>
                             @if(auth()->user()->role_id === 1)
-                            <a href="{{ route('admin.obat.edit', $karyawan->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
+                            <a href="{{ route('admin.karyawan.edit', $karyawan->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
                                 <i class="fas fa-fw fa-edit"></i>
                             </a>
                             @if(auth()->user()->id !== $karyawan->id)

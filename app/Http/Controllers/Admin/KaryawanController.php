@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Role;
 use Illuminate\Foundation\Auth\User;
+use File;
 use App\Http\Controllers\Helper\UploadController;
-
 
 class KaryawanController extends Controller
 {
@@ -89,7 +89,8 @@ class KaryawanController extends Controller
      */
     public function edit($id)
     {
-        //
+        $karyawan = User::find($id);
+        return view('admin.karyawan.edit', compact('karyawan'));
     }
 
     /**
@@ -101,7 +102,28 @@ class KaryawanController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $image = $request->file('gambar');
+        $location = 'images/karyawan/';
+        $karyawan = User::find($id);
+
+        if (!empty($image)) {
+            if (File::exists($karyawan->gambar)) {
+                File::delete($karyawan->gambar);
+            }
+        }
+
+        if ($image !== null) {
+            $karyawan->gambar = $this->helpers->imageUpload($image, $location);
+        }
+
+        $karyawan->name = $request->get('nama_karyawan') ?? $karyawan->name;
+        $karyawan->email = $request->get('email') ?? $karyawan->email;
+        $karyawan->jenis_kelamin = $request->get('jk') ?? $karyawan->jenis_kelamin;
+        $karyawan->alamat = $request->get('alamat') ?? $karyawan->alamat;
+        $karyawan->no_telp = $request->get('no_telp') ?? $karyawan->no_telp;
+        $karyawan->save();
+
+        return redirect()->route('admin.karyawan.index')->with('success', 'Data berhasil diubah!');
     }
 
     /**
