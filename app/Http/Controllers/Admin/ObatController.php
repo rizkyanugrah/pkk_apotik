@@ -11,6 +11,7 @@ use App\Http\Controllers\Helper\UploadController;
 use App\Jenis;
 use App\Kategori;
 use App\Satuan;
+use NumberFormatter;
 
 class ObatController extends Controller
 {
@@ -63,14 +64,19 @@ class ObatController extends Controller
         $image = $request->file('gambar');
         $location = 'images/obat/';
 
+
+
+        $harga_jual = intval(preg_replace('(\D+)', '', $request->get('harga_jual')));
+        $harga_beli = intval(preg_replace('(\D+)', '', $request->get('harga_beli')));
+
         $obats = new Obat();
         $obats->supplier_id = $request->get('supplier');
         $obats->satuan_id = $request->get('satuan');
         $obats->jenis_id = $request->get('jenis');
         $obats->kategori_id = $request->get('kategori');
         $obats->indikasi = $request->get('indikasi');
-        $obats->harga_jual = $request->get('harga_jual');
-        $obats->harga_beli = $request->get('harga_beli');
+        $obats->harga_jual = $harga_jual;
+        $obats->harga_beli = $harga_beli;
         $obats->stok = $request->get('jumlah');
         $obats->nama_obat = $request->get('nama_obat');
         $obats->aturan_minum = $request->get('aturan_minum');
@@ -134,6 +140,9 @@ class ObatController extends Controller
             $medicine->gambar = $this->helpers->imageUpload($image, $location);
         }
 
+        $harga_jual = intval(preg_replace('(\D+)', '', $request->get('harga_jual')));
+        $harga_beli = intval(preg_replace('(\D+)', '', $request->get('harga_beli')));
+
         $medicine->supplier_id = $request->get('supplier') ?? $medicine->supplier;
         $medicine->satuan_id = $request->get('satuan') ?? $medicine->satuan;
         $medicine->kategori_id = $request->get('kategori') ?? $medicine->kategori;
@@ -142,8 +151,8 @@ class ObatController extends Controller
         $medicine->indikasi = $request->get('indikasi') ?? $medicine->indikasi;
         $medicine->nama_obat = $request->get('nama_obat') ?? $medicine->nama_obat;
         $medicine->aturan_minum = $request->get('aturan_minum') ?? $medicine->aturan_minum;
-        $medicine->harga_beli = $request->get('harga_beli') ?? $medicine->harga_beli;
-        $medicine->harga_jual = $request->get('harga_jual') ?? $medicine->harga_jual;
+        $medicine->harga_beli = $harga_beli ?? $medicine->harga_beli;
+        $medicine->harga_jual = $harga_jual ?? $medicine->harga_jual;
         $medicine->is_expired = $request->get('is_expired') ?? $medicine->is_expired;
         $medicine->tanggal_kadaluarsa = $request->get('tanggal_kadaluarsa') ?? $medicine->tanggal_kadaluarsa;
         $medicine->save();
