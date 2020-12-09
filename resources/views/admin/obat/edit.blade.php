@@ -62,14 +62,15 @@
                         <td>Harga Beli</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="harga_beli" id="rupiah" value="{{ $medicine->harga_beli }}">
+                            <input type="text" class="form-control" name="harga_beli" id="rupiah" value="Rp. {{ number_format($medicine->harga_beli, 0, ',', '.') }}">
+                            
                         </td>
                     </tr>
                     <tr>
                         <td>Harga Jual</td>
                         <td>:</td>
                         <td class="text-wrap">
-                            <input type="text" class="form-control" name="harga_jual" id="uang" value="{{ $medicine->harga_jual }}">
+                            <input type="text" class="form-control" name="harga_jual" id="uang" value="Rp. {{ number_format($medicine->harga_jual, 0, ',', '.') }}">
                         </td>
                     </tr>
                     <tr>
@@ -90,13 +91,13 @@
                             <input type="date" class="form-control" name="tanggal_kadaluarsa" id="languages_edit" value="{{ $medicine->tanggal_kadaluarsa }}">
                         </td>
                     </tr>
-                    <tr>
+                    {{-- <tr>
                         <td>Stok</td>
                         <td>:</td>
                         <td class="text-wrap">
                             <input type="number" class="form-control" name="stok" id="languages_edit" value="{{ $medicine->stok }}">
                         </td>
-                    </tr>
+                    </tr> --}}
                     <tr>
                         <td>Indikasi</td>
                         <td>:</td>

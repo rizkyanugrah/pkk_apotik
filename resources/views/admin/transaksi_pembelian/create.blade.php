@@ -163,6 +163,7 @@
                         (obj, item) => Object.assign(obj, {
                             [item.name]: item.value
                         }), {});
+                        
                     // Jika ada item dengan nama yang sama, maka hapus kemudian buat baru, jika tidak maka tambahkan
                     const storedData = !!data.find(item => item.obat === obat.obat) ? [...data.filter((item) => item.obat !== obat.obat), obat] : [...data, obat];
                     sessionStorage.setItem(sessionItemName, JSON.stringify(storedData));

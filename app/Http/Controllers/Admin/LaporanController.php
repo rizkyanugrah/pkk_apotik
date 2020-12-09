@@ -145,7 +145,7 @@ class LaporanController extends Controller
         }
 
 
-        return redirect()->route('admin.laporan.index')->with('success', 'Berhasil mendownload laporan!');
+        return redirect()->route('admin.laporan.index');
     }
 
     /**

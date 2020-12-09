@@ -33,12 +33,13 @@
                 <tr>
                     <td>Harga Beli</td>
                     <td>:</td>
-                    <td class="text-wrap">{{ $medicine->harga_beli }}</td>
+                    <td class="text-wrap">Rp. {{ number_format($medicine->harga_beli, 0, ',', '.') }}</td>
+                    
                 </tr>
                 <tr>
                     <td>Harga Jual</td>
                     <td>:</td>
-                    <td class="text-wrap">{{ $medicine->harga_jual }}</td>
+                    <td class="text-wrap">Rp. {{ number_format($medicine->harga_jual, 0, ',', '.') }}</td>
                 </tr>
                 <tr>
                     <td>Kadaluarsa</td>
@@ -53,7 +54,7 @@
                 <tr>
                     <td>Stok</td>
                     <td>:</td>
-                    <td class="text-wrap">{{ $medicine->stok }}</td>
+                    <td class="text-wrap {{$medicine->stok  <= 20 ? 'text-danger font-weight-bold' : ''}}">{{ $medicine->stok }}</td>
                 </tr>
                 <tr>
                     <td>Indikasi</td>
