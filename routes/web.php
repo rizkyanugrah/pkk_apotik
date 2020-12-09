@@ -28,8 +28,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('karyawan', 'Admin\KaryawanController');
         Route::resource('supplier', 'Admin\SupplierController');
 
-        Route::resource('obat_keluar', 'Admin\ObatKeluarController');
-        Route::resource('transaksi_jual', 'Admin\TransaksiJualController');
         Route::resource('pembelian', 'Admin\TransaksiPembelianController');
         Route::resource('laporan', 'Admin\LaporanController');
         Route::resource('cart', 'Admin\CartController');
