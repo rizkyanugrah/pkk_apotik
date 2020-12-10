@@ -113,7 +113,7 @@
                     const totalPriceText = $("#total-price");
                     const data = JSON.parse(sessionStorage.getItem(sessionItemName) || "[]")
                     $("#table tbody").empty();
-                    const totalPrice = data.reduce((a, b) => parseInt(a.price || "0") * parseInt(a.jumlah || "0") + parseInt(b.price) * parseInt(b.jumlah), 0).toLocaleString('id-ID', {
+                    const totalPrice = data.reduce((a, b) => a += (parseInt(b.price || "0") * parseInt(b.jumlah || "0")), 0).toLocaleString('id-ID', {
                         style: 'currency',
                         currency: 'IDR'
                     });
