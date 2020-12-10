@@ -77,7 +77,7 @@
 @push('js')
 <script>
     new Typed('#typed', {
-        strings: ['Halo, Selamat Datang Di Aplikasi Apotek', 'Layani Pembeli dengan Ramah :)', 'Gatau Lagi Mau Isi Tulisan Apaan'],
+        strings: ['Halo, Selamat Datang Di Aplikasi Apotik', 'Layani Pembeli dengan Ramah :)'],
         typeSpeed: 50,
         delaySpeed: 150,
         loop: true

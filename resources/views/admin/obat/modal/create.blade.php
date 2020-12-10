@@ -81,24 +81,24 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="rupiah">Harga Beli</label>
                                 <input type="text" class="form-control" id="rupiah" name="harga_beli">
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="uang">Harga Jual </label>
                                 <input type="text" class="form-control" id="uang" name="harga_jual">
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        {{-- <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="jumlah">Jumlah</label>
                                 <input type="number" class="form-control" id="jumlah" name="jumlah">
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="row">

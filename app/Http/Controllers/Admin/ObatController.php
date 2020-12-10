@@ -77,7 +77,7 @@ class ObatController extends Controller
         $obats->indikasi = $request->get('indikasi');
         $obats->harga_jual = $harga_jual;
         $obats->harga_beli = $harga_beli;
-        $obats->stok = $request->get('jumlah');
+        $obats->stok = 0;
         $obats->nama_obat = $request->get('nama_obat');
         $obats->aturan_minum = $request->get('aturan_minum');
         $obats->is_expired = $request->get('is_expired');
