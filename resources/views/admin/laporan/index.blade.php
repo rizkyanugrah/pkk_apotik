@@ -19,7 +19,7 @@
                         <div class="form-group">
                             <label for="type">Data Laporan</label>
                             <select name="type" class="form-control" id="type">
-                                <option value="penjualan" disabled>Transaksi Penjualan</option>
+                                <option value="penjualan">Transaksi Penjualan</option>
                                 <option selected value="pembelian">Transaksi Pembelian</option>
                                 <option value="obat">Daftar Obat</option>
                             </select>

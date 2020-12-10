@@ -30,7 +30,7 @@ class UsersTableSeeder extends Seeder
             'email' => 'apoteker@mail.com',
             'jenis_kelamin' => 'wanita',
             'alamat' => 'Jalan buntu',
-            'gambar' => 'img/avatar/avatar-5.png',
+            'gambar' => 'img/avatar/avatar-4.png',
             'no_telp' => '0831265312312',
             'password' => bcrypt('secret')
         ]);

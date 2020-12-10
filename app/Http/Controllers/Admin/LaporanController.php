@@ -80,6 +80,52 @@ class LaporanController extends Controller
         $writer->save('php://output');
     }
 
+    private function exportSellData($start_date, $end_date)
+    {
+        $transactions = TransaksiPenjualan::whereBetween('tanggal_penjualan', [Carbon::parse($start_date)->toDateTimeString(), Carbon::parse($end_date)->toDateTimeString()])->get();
+        $column_alphanumerics = range('A', 'G');
+
+        $spreadsheet = new Spreadsheet();
+
+        $sheet = $spreadsheet->setActiveSheetIndex(0);
+
+        foreach ($column_alphanumerics as $column_alphanumeric) {
+            $sheet->setCellValue('A1', 'NO')
+                ->setCellValue('B1', 'Nama Apoteker')
+                ->setCellValue('C1', 'Nama Pembeli')
+                ->setCellValue('D1', 'Tanggal Penjualan')
+                ->setCellValue('E1', 'Total Harga')
+                ->setCellValue('F1', 'Daftar Obat')
+                ->setCellValue('G1', 'Daftar Kuantitas Obat')->getColumnDimension($column_alphanumeric)->setAutoSize(true);
+        }
+
+        $column = 2;
+        $number = 1;
+        foreach ($transactions as $key => $transaction) {
+            $drug_list = join(", ", $transaction->details->map(function ($detail) {
+                return $detail->obat->nama_obat;
+            })->toArray());
+            $drug_quantity_list = join(", ", $transaction->details->map(function ($detail) {
+                return $detail->total_obat . " " . $detail->obat->satuans->nama_satuan;
+            })->toArray());
+            $sheet->setCellValue('A' . $column, $number)
+                ->setCellValue('B' . $column, $transaction->user->name)
+                ->setCellValue('C' . $column, $transaction->nama_pembeli)
+                ->setCellValue('D' . $column, Carbon::parse($transaction->tanggal_penjualan)->format("d-m-Y"))
+                ->setCellValue('E' . $column, $transaction->cost)
+                ->setCellValue('F' . $column, $drug_list)
+                ->setCellValue('G' . $column, $drug_quantity_list)->getColumnDimension($column_alphanumeric)->setAutoSize(true);
+            $column++;
+            $number++;
+        }
+
+        $file_name = '[APOTEK] - DAFTAR TRANSAKSI PENJUALAN -' . date('d-m-Y');
+        header('Content-Disposition: attachment;filename="' . $file_name . '.xls"');
+
+        $writer = new Xls($spreadsheet);
+        $writer->save('php://output');
+    }
+
     private function exportBoughtData($start_date, $end_date)
     {
         $transactions = TransaksiPembelian::whereBetween('tanggal_pembelian', [Carbon::parse($start_date)->toDateTimeString(), Carbon::parse($end_date)->toDateTimeString()])->get();
@@ -139,6 +185,9 @@ class LaporanController extends Controller
                 break;
             case "pembelian":
                 $this->exportBoughtData($request->start_date, $request->end_date);
+                break;
+            case "penjualan":
+                $this->exportSellData($request->start_date, $request->end_date);
                 break;
             default:
                 return redirect()->route('admin.laporan.index')->with('error', 'Gagal mendownload laporan!');
