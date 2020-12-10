@@ -29,6 +29,7 @@ Route::middleware('auth')->group(function () {
         Route::resource('supplier', 'Admin\SupplierController');
 
         Route::resource('pembelian', 'Admin\TransaksiPembelianController');
+        Route::resource('penjualan', 'Admin\TransaksiPenjualanController');
         Route::resource('laporan', 'Admin\LaporanController');
         Route::resource('cart', 'Admin\CartController');
     });

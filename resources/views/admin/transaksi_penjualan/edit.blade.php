@@ -1,31 +1,27 @@
-@extends('layouts.stisla.index', ['title' => 'Tambah Transaksi Pembelian', 'header' => 'Tambah Transaksi Pembelian'])
+@extends('layouts.stisla.index', ['title' => 'Ubah Transaksi Penjualan', 'header' => 'Ubah Transaksi Penjualan'])
 
 @section('content')
 <div class="row">
     <div class="col-lg-12 table-responsive">
         <div class="card px-3 py-3">
-            <form id="add-transaction">
+            <form id="edit-transaction" data-id="{{$transaction->id }}">
+                <input type="hidden" name="_method" value="PUT">
                 <div class="form-group">
                     <label for="apoteker">Apoteker</label>
-                    <input name="apoteker" type="text" class="form-control" id="apoteker" readonly value="{{auth::user()->name}}">
+                    <input name="apoteker" type="text" class="form-control" id="apoteker" readonly value="{{$transaction->user->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="supplier">Supplier</label>
-                    <select name="supplier" class="form-control select2-dropdown" id="supplier">
-                        <option selected>Pilih Supplier...</option>
-                        @foreach($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
-                        @endforeach
-                    </select>
+                    <label for="supplier">Pembeli</label>
+                    <input name="pembeli" type="text" class="form-control" id="pembeli" value="{{$transaction->nama_pembeli}}">
                 </div>
                 <div class="form-group">
                     <label for="tanggal_transaksi">Tanggal Transaksi</label>
-                    <input type="text" class="form-control" id="tanggal_transaksi" readonly name="tanggal_transaksi" value="{{ date("d-m-Y")}}">
+                    <input type="date" class="form-control" id="tanggal_transaksi" name="tanggal_transaksi" value="{{$transaction->tanggal_penjualan}}">
                 </div>
                 <div class="row">
                     <div class="col-lg-12 px-3 py-3 justify-content-end">
                         <button type="button" id="add" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-                            + Tambah Obat
+                            + Tambah Transaksi
                         </button>
                     </div>
                 </div>
@@ -43,19 +39,30 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td colspan="8" class="text-center">Tidak ada data</td>
+                        @foreach($transaction->details as $detail)
+                        <tr data-unit="{{$detail->obat->satuans->nama_satuan}}" data-name="{{$detail->obat->nama_obat}}" data-price="{{$detail->obat->harga_beli}}" data-obat="{{$detail->obat->id}}" data-jumlah="{{$detail->total_obat}}">
+                            <td>{{$loop->iteration}}</td>
+                            <td>{{$detail->obat->nama_obat}}</td>
+                            <td>{{$detail->obat->satuans->nama_satuan}}</td>
+                            <td>{{$detail->total_obat}}</td>
+                            <td>Rp. {{ number_format($detail->obat->harga_beli, 0, ',', '.') }}</td>
+                            <td>{{ $detail->cost}}</td>
+                            <td>
+                                <button class="btn btn-sm btn-success edit-btn" data-index="{{$loop->iteration - 1}}">Ubah</button>
+                                <button class="btn btn-sm btn-danger delete-btn" data-index="{{$loop->iteration - 1}}">Hapus</button>
+                            </td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
                 <hr>
                 <div class="row">
                     <div class="col-lg-6">
                         <button type="submit" class="btn btn-success">Simpan</button>
-                        <a href="{{ route('admin.pembelian.index') }}" type="submit" class="btn btn-danger">Batal</a>
+                        <a href="{{ route('admin.penjualan.index') }}" type="submit" class="btn btn-danger">Batal</a>
                     </div>
                     <div class="col-lg-6 text-right">
-                        <h5 id="total-price">Total : RP 0</h5>
+                        <h5 id="total-price">Total : {{$transaction->cost}}</h5>
                     </div>
                 </div>
             </form>
@@ -80,7 +87,7 @@
                             <div class="form-group">
                                 <label for="obat">Obat</label>
                                 <select name="obat" class=" select2-dropdown" id="obat">
-                                    <option selected>Pilih Obat...</option>
+                                    <option>Pilih Obat...</option>
                                     @foreach($obats as $obat)
                                     <option value="{{ $obat->id }}" data-name="{{$obat->nama_obat}}" data-price="{{$obat->harga_beli}}" data-unit="{{$obat->satuans->nama_satuan}}">{{ $obat->nama_obat }}</option>
                                     @endforeach
@@ -103,17 +110,30 @@
         @push('js')
         <script>
             $(function() {
-                const sessionItemName = "buy-transaction"
+                const sessionItemName = "edit-buy-transaction"
                 // delete session data on first load
                 $(window).on('load', function() {
+                    // [{"unit":"Keping","price":"146618","drugName":"Repellat.","obat":"1","jumlah":"2"}]
                     sessionStorage.removeItem(sessionItemName);
+                    let data = [];
+                    $("#table tbody tr").each(function() {
+                        data.push({
+                            unit: $(this).data("unit"),
+                            price: `${$(this).data("price")}`,
+                            drugName: $(this).data("name"),
+                            obat: `${$(this).data("obat")}`,
+                            jumlah: `${$(this).data("jumlah")}`,
+                        })
+                    })
+                    console.log(data)
+                    sessionStorage.setItem(sessionItemName, JSON.stringify(data));
                 })
                 // set row to table
                 function setTableItem() {
                     const totalPriceText = $("#total-price");
-                    const data = JSON.parse(sessionStorage.getItem(sessionItemName) || "[]")
+                    const data = JSON.parse(sessionStorage.getItem(sessionItemName))
                     $("#table tbody").empty();
-                    const totalPrice = data.reduce((a, b) => parseInt(a.price || "0") * parseInt(a.jumlah || "0") + parseInt(b.price) * parseInt(b.jumlah), 0).toLocaleString('id-ID', {
+                    const totalPrice = data.map(item => parseInt(item.price) * parseInt(item.jumlah)).reduce((a, b) => a + b, 0).toLocaleString('id-ID', {
                         style: 'currency',
                         currency: 'IDR'
                     });
@@ -134,6 +154,7 @@
                                 currency: 'IDR'
                             })}</td>
                             <td>
+                                <button class="btn btn-sm btn-success mr-2 edit-btn" data-index="${index}">Ubah</button>
                                 <button class="btn btn-sm btn-danger delete-btn" data-index="${index}">Hapus</button>
                             </td>
                         </tr>
@@ -162,40 +183,39 @@
                         (obj, item) => Object.assign(obj, {
                             [item.name]: item.value
                         }), {});
-                        
                     // Jika ada item dengan nama yang sama, maka hapus kemudian buat baru, jika tidak maka tambahkan
                     const storedData = !!data.find(item => item.obat === obat.obat) ? [...data.filter((item) => item.obat !== obat.obat), obat] : [...data, obat];
                     sessionStorage.setItem(sessionItemName, JSON.stringify(storedData));
                     setTableItem();
                     $("#form")[0].reset();
-                    $('#form #select2-obat-container').html("Pilih Obat...")
                     $("#addModal").modal('hide')
                 })
                 // Submit
-                $("#add-transaction").on('submit', function(e) {
+                $("#edit-transaction").on('submit', function(e) {
                     e.preventDefault();
                     const data = {
-                        supplier: $("#add-transaction select[name='supplier']").val(),
-                        transaction_date: $("#add-transaction input[name='tanggal_transaksi']").val(),
+                        supplier: $("#edit-transaction select[name='supplier']").val(),
+                        transaction_date: $("#edit-transaction input[name='tanggal_transaksi']").val(),
                         details: JSON.parse(sessionStorage.getItem(sessionItemName)).map(({
                             obat,
                             jumlah
                         }) => ({
                             id: obat,
                             total: jumlah
-                        }))
+                        })),
+                        _method: "PUT"
                     }
                     $.ajax({
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: '/admin/pembelian',
+                        url: `{{ url('admin/pembelian') }}/${$(this).data('id')}`,
                         type: 'POST',
                         data: data,
                         success: function(data) {
                             Swal.fire({
                                 title: "Berhasil",
-                                text: "Data berhasil ditambah.",
+                                text: "Data berhasil diubah. Total obat akan berubah sesuai dengan data yang diubah",
                                 icon: "success",
                                 timerProgressBar: true,
                                 onBeforeOpen: () => {
@@ -239,7 +259,8 @@
                     deleteItem(parseInt($(this).data("index")))
                 })
                 // edit item
-                $(document).on('click', ".edits-btn", function() {
+                $(document).on('click', ".edit-btn", function(e) {
+                    e.preventDefault()
                     const item = JSON.parse(sessionStorage.getItem(sessionItemName)).filter((item, index) => index === parseInt($(this).data("index")))[0]
                     $("#form input[name='jumlah']").val(item.jumlah)
                     $("#form select").val(item.obat)

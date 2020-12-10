@@ -1,4 +1,4 @@
-@extends('layouts.stisla.index', ['title' => 'Transaksi Pembelian', 'header' => 'Transaksi Pembelian'])
+@extends('layouts.stisla.index', ['title' => 'Transaksi Penjualan', 'header' => 'Transaksi Penjualan'])
 
 @section('content')
 <div class="row">
@@ -6,7 +6,7 @@
         <div class="card px-3 py-3">
             <div class="row">
                 <div class="col-lg-12 px-3 py-3 text-right">
-                    <a href="{{ route('admin.pembelian.create') }}" type="button" class="btn btn-primary">
+                    <a href="{{ route('admin.penjualan.create') }}" type="button" class="btn btn-primary">
                         + Transaksi Baru
                     </a>
                 </div>
@@ -24,9 +24,9 @@
                     <tr>
                         <th>No</th>
                         <th>Apoteker</th>
-                        <th>Supplier</th>
+                        <th>Pembeli</th>
                         <th>Total Biaya</th>
-                        <th>Tanggal Pembelian</th>
+                        <th>Tanggal Penjualan</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -35,16 +35,13 @@
                     <tr>
                         <td>{{$loop->iteration}}</td>
                         <td>{{$transaction->user->name}}</td>
-                        <td>{{$transaction->supplier->nama_supplier}}</td>
+                        <td>{{$transaction->nama_pembeli}}</td>
                         <td>{{$transaction->cost}}</td>
                         <td>{{$transaction->transaction_date}}</td>
                         <td>
-                            <a href="{{ route('admin.pembelian.show', $transaction->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
+                            <a href="{{ route('admin.penjualan.show', $transaction->id) }}" class="btn btn-sm btn-info text-white" title="Lihat data">
                                 <i class="fas fa-fw fa-search"></i>
                             </a>
-                            {{-- <a href="{{ route('admin.pembelian.edit', $transaction->id) }}" class="btn btn-sm btn-warning text-white" title="Ubah data">
-                                <i class="fas fa-fw fa-edit"></i>
-                            </a> --}}
                             <button type="submit" class="btn btn-sm btn-danger text-white swal-delete" data-id="{{ $transaction->id }}" title="Hapus data">
                                 <i class="fas fa-fw fa-trash"></i>
                             </button>
@@ -81,7 +78,7 @@
 
                 $.ajax({
                     type: "POST",
-                    url: "{{ url('admin/pembelian') }}/" + id,
+                    url: "{{ url('admin/penjualan') }}/" + id,
                     data: {
                         _method: "DELETE"
                     },

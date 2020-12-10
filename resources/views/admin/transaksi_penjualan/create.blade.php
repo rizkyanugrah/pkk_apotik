@@ -1,4 +1,4 @@
-@extends('layouts.stisla.index', ['title' => 'Tambah Transaksi Pembelian', 'header' => 'Tambah Transaksi Pembelian'])
+@extends('layouts.stisla.index', ['title' => 'Tambah Transaksi Penjualan', 'header' => 'Tambah Transaksi Penjualan'])
 
 @section('content')
 <div class="row">
@@ -10,13 +10,8 @@
                     <input name="apoteker" type="text" class="form-control" id="apoteker" readonly value="{{auth::user()->name}}">
                 </div>
                 <div class="form-group">
-                    <label for="supplier">Supplier</label>
-                    <select name="supplier" class="form-control select2-dropdown" id="supplier">
-                        <option selected>Pilih Supplier...</option>
-                        @foreach($suppliers as $supplier)
-                        <option value="{{ $supplier->id }}">{{ $supplier->nama_supplier }}</option>
-                        @endforeach
-                    </select>
+                    <label for="pembeli">Nama Pembeli</label>
+                    <input name="pembeli" type="text" class="form-control" id="pembeli">
                 </div>
                 <div class="form-group">
                     <label for="tanggal_transaksi">Tanggal Transaksi</label>
@@ -25,7 +20,7 @@
                 <div class="row">
                     <div class="col-lg-12 px-3 py-3 justify-content-end">
                         <button type="button" id="add" class="btn btn-primary" data-toggle="modal" data-target="#addModal">
-                            + Tambah Obat
+                            + Tambah Transaksi
                         </button>
                     </div>
                 </div>
@@ -52,7 +47,7 @@
                 <div class="row">
                     <div class="col-lg-6">
                         <button type="submit" class="btn btn-success">Simpan</button>
-                        <a href="{{ route('admin.pembelian.index') }}" type="submit" class="btn btn-danger">Batal</a>
+                        <a href="{{ route('admin.penjualan.index') }}" type="submit" class="btn btn-danger">Batal</a>
                     </div>
                     <div class="col-lg-6 text-right">
                         <h5 id="total-price">Total : RP 0</h5>
@@ -175,7 +170,7 @@
                 $("#add-transaction").on('submit', function(e) {
                     e.preventDefault();
                     const data = {
-                        supplier: $("#add-transaction select[name='supplier']").val(),
+                        pembeli: $("#add-transaction input[name='pembeli']").val(),
                         transaction_date: $("#add-transaction input[name='tanggal_transaksi']").val(),
                         details: JSON.parse(sessionStorage.getItem(sessionItemName)).map(({
                             obat,
@@ -189,7 +184,7 @@
                         headers: {
                             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                         },
-                        url: '/admin/pembelian',
+                        url: '/admin/penjualan',
                         type: 'POST',
                         data: data,
                         success: function(data) {
@@ -213,7 +208,7 @@
                                 showConfirmButton: false
                             });
                             sessionStorage.removeItem(sessionItemName);
-                            window.location.href = '/admin/pembelian';
+                            window.location.href = '/admin/penjualan';
                         },
                         error: function(request, status, error) {
                             console.log(request, status, error)
@@ -223,7 +218,7 @@
                                 icon: "error",
                             }).then(function() {
                                 sessionStorage.removeItem(sessionItemName);
-                                window.location.href = '/admin/pembelian';
+                                window.location.href = '/admin/penjualan';
                             })
                         }
                     })
@@ -239,7 +234,7 @@
                     deleteItem(parseInt($(this).data("index")))
                 })
                 // edit item
-                $(document).on('click', ".edits-btn", function() {
+                $(document).on('click', ".edit-btn", function() {
                     const item = JSON.parse(sessionStorage.getItem(sessionItemName)).filter((item, index) => index === parseInt($(this).data("index")))[0]
                     $("#form input[name='jumlah']").val(item.jumlah)
                     $("#form select").val(item.obat)

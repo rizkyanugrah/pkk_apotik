@@ -58,7 +58,7 @@
             <li class="{{Request::segment(2) == 'pembelian' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.pembelian.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Pembelian</span></a></li>
             @endif
             @if(auth()->user()->role_id === 2)
-                <li class="{{Request::segment(2) == 'obat_keluar' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.obat_keluar.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
+                <li class="{{Request::segment(2) == 'penjualan' ? 'active' : ''}}"><a class="nav-link" href="{{ route('admin.penjualan.index') }}"><i class="fas fa-money-check-alt"></i> <span>Transaksi Penjualan</span></a></li>
             @endif
             @if(auth()->user()->role_id === 1)
             <li class="menu-header">Laporan</li>
