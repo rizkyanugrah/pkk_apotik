@@ -23,7 +23,7 @@ Route::middleware('auth')->group(function () {
 
         Route::resource('satuan', 'Admin\SatuanController');
         Route::resource('jenis', 'Admin\JenisController');
-        Route::resource('kategori', 'Admin\kategoriController');
+        Route::resource('kategori', 'Admin\KategoriController');
         Route::resource('obat', 'Admin\ObatController');
         Route::resource('karyawan', 'Admin\KaryawanController');
         Route::resource('supplier', 'Admin\SupplierController');

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Jenis extends Model
 {
-    protected $table = 'Jenis';
+    protected $table = 'jenis';
 
     public function obat()
     {

@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\supplier;
+use App\Supplier;
 use File;
 use App\Http\Controllers\Helper\UploadController;
 
@@ -24,7 +24,7 @@ class SupplierController extends Controller
 
     public function index()
     {
-        $suppliers = supplier::all();
+        $suppliers = Supplier::all();
         return view('admin.supplier.index', compact('suppliers'));
     }
 
@@ -49,7 +49,7 @@ class SupplierController extends Controller
         $image = $request->file('gambar');
         $location = 'images/supplier/';
 
-        $suppliers = new supplier();
+        $suppliers = new Supplier();
         $suppliers->nama_supplier = $request->get('nama_supplier');
         $suppliers->alamat = $request->get('alamat');
         $suppliers->nomor_handphone = $request->get('no_hp');
@@ -66,7 +66,7 @@ class SupplierController extends Controller
      */
     public function show($id)
     {
-        $supplier = supplier::find($id);
+        $supplier = Supplier::find($id);
 
         return view('admin.supplier.show', compact('supplier'));
     }
@@ -79,7 +79,7 @@ class SupplierController extends Controller
      */
     public function edit($id)
     {
-        $supplier = supplier::find($id);
+        $supplier = Supplier::find($id);
         return view('admin.supplier.edit', compact('supplier'));
     }
 
@@ -94,7 +94,7 @@ class SupplierController extends Controller
     {
         $image = $request->file('gambar');
         $location = 'images/supplier/';
-        $supplier = supplier::find($id);
+        $supplier = Supplier::find($id);
 
         if (!empty($image)) {
             if (File::exists($supplier->gambar)) {
@@ -123,7 +123,7 @@ class SupplierController extends Controller
      */
     public function destroy($id)
     {
-        supplier::find($id)->delete();
+        Supplier::find($id)->delete();
 
         return redirect()->route('admin.supplier.index')->with('success', 'Data berhasil dihapus!');
     }
