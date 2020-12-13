@@ -61,6 +61,9 @@
             </form>
         </div>
         
+        @endsection
+        
+        @push('modal')
         <div class="modal fade" id="addModal" aria-labelledby="addModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -98,7 +101,8 @@
                 </div>
             </div>
         </div>
-        @endsection
+            
+        @endpush
 
         @push('js')
         <script>

@@ -22,6 +22,7 @@
                 </section>
             </div>
         </div>
+        @stack('modal')
     </div>
 
 @include('layouts.stisla.footer')
