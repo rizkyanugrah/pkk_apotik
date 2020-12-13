@@ -72,8 +72,6 @@
                 </div>
             </form>
         </div>
-        @endsection
-        
         <div class="modal fade" id="addModal" aria-labelledby="addModalLabel" aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -82,7 +80,7 @@
                             <h5 class="modal-title" id="addModalLabel">Tambah Transaksi</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
-                            </button>
+                            </button>   
                         </div>
                         <div class="modal-body">
                             <input name="unit" type="hidden" class="form-control" id="unit">
@@ -111,6 +109,8 @@
                 </div>
             </div>
         </div>
+        @endsection
+        
 
         @push('js')
         <script>
