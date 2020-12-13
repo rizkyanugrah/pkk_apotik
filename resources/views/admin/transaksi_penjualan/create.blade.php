@@ -56,7 +56,7 @@
             </form>
         </div>
         @endsection
-        <div class="modal fade" id="addModal" aria-labelledby="addModalLabel" aria-hidden="true">
+        <div class="modal fade" id="addModal" aria-labelledby="addModalLabel" aria-hidden="true" data-backdrop="false">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <form id="form" action="" method="">
