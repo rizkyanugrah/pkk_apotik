@@ -21,4 +21,7 @@
                     @yield('content')
                 </section>
             </div>
-            @include('layouts.stisla.footer')
+        </div>
+    </div>
+
+@include('layouts.stisla.footer')
